@@ -15,8 +15,8 @@ function App() {
         <Navigationbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/our-ethos" element={<Ethos />} />
-          <Route path="/our-approach" element={<Approach />} />
+          <Route path="/about-us/our-ethos" element={<Ethos />} />
+          <Route path="/about-us/our-approach" element={<Approach />} />
           <Route path="/nutrition" element={<Nutrition />} />
         </Routes>
         <Footer />
