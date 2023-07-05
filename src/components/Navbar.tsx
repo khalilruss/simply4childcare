@@ -31,10 +31,8 @@ const Navigationbar = () => {
             title="About Us"
             id="basic-nav-dropdown"
           >
-            <NavDropdown.Item href="/about-us/our-ethos">
-              Our Ethos
-            </NavDropdown.Item>
-            <NavDropdown.Item href="/about-us/our-approach">
+            <NavDropdown.Item href="/our-ethos">Our Ethos</NavDropdown.Item>
+            <NavDropdown.Item href="/our-approach">
               Our Approach
             </NavDropdown.Item>
           </NavDropdown>
