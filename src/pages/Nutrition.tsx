@@ -1,11 +1,8 @@
 import { Container, Image } from "react-bootstrap";
 import nutrition from "../assests/nutrition.jpg";
 import menu from "../assests/sample-menu.png";
-import { useMediaQuery } from "react-responsive";
 
 const Nutrition = (): JSX.Element => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-
   return (
     <>
       <Container
