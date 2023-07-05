@@ -8,8 +8,11 @@ import maths from "../assests/mathematicals.jpg";
 import globe from "../assests/studentsglobe.jpg";
 import arts from "../assests/Arts.webp";
 import curious from "../assests/curious.jpg";
+import { useMediaQuery } from "react-responsive";
 
 const Approach = (): JSX.Element => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
   return (
     <div>
       <Container
@@ -31,7 +34,7 @@ const Approach = (): JSX.Element => {
         </div>
       </Container>
 
-      <Container fluid className="d-flex flex-column p-0 vh-95">
+      <Container fluid className="d-flex flex-column p-0 overflow-hidden">
         <h1 className="text-center">
           The Early Years Foundation Stage framework
         </h1>
@@ -49,15 +52,19 @@ const Approach = (): JSX.Element => {
             id="uncontrolled-tab-example"
             className="mb-3 w-fit-content"
           >
-            <Tab eventKey="home" title="Prime Areas">
+            <Tab className="h-auto" eventKey="home" title="Prime Areas">
               <Container>
                 <h2>Prime Areas:</h2>
                 <p className="fs-4">
                   The Prime Areas are fundamental to igniting a child’s
                   curiosity and building their capacity to learn. These are:
                 </p>
-                <Container className="d-flex flex-row text-center vw-100">
-                  <Container className="d-flex flex-column text-center align-items-center">
+                <Container
+                  className={`d-flex text-center w-100 ${
+                    !isTabletOrMobile ? " flex-row vh-50" : " flex-column "
+                  }`}
+                >
+                  <Container className="d-flex flex-column text-center align-items-center p-0">
                     <h3>Communication and Language</h3>
                     <Image rounded className="p-0 w-70" src={communication} />
                     <p className="fs-5">
@@ -98,7 +105,11 @@ const Approach = (): JSX.Element => {
                   are:
                 </p>
               </Container>
-              <Container className="d-flex flex-row text-center">
+              <Container
+                className={`d-flex text-center w-100 ${
+                  !isTabletOrMobile ? " flex-row " : " flex-column"
+                }`}
+              >
                 <Container className="d-flex flex-column text-center align-items-center">
                   <h3>Literacy</h3>
                   <Image rounded className="p-0 w-80" src={literary} />
@@ -154,9 +165,13 @@ const Approach = (): JSX.Element => {
             environment to inspire curiosity, urging children to investigate,
             discover, think and problem solve.
           </p>
-          <Container className="d-flex flex-colomn">
+          <Container
+            className={`d-flex flex-colomn ${
+              !isTabletOrMobile ? " flex-row" : " flex-column-reverse"
+            }`}
+          >
             <Container>
-              <p>Through the Curiosity approach we;</p>
+              <p>Through the Curiosity approach we:</p>
               <ul>
                 <li>
                   Create wondrous opportunities for learning and development.
@@ -180,7 +195,6 @@ const Approach = (): JSX.Element => {
                 </li>
               </ul>
             </Container>
-
             <Image rounded className="p-0 vh-40" src={curious} />
           </Container>
         </Container>

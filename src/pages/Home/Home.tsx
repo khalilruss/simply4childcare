@@ -5,6 +5,7 @@ import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 // import ReactCSSTransitionReplace from "react-css-transition-replace";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
@@ -16,44 +17,44 @@ const Home = (): JSX.Element => {
   });
 
   const [toggleForm, setToggleForm] = useState<boolean>(false);
-
-  // const map2 = useGoogleMap()
-  // const [map, setMap] = useState<google.maps.Map | null>(null);
-
-  // const onLoad = useCallback(function callback(map: google.maps.Map) {
-  //   // This is just an example of getting and using the map instance!!! don't just blindly copy!
-  //   // const bounds = new window.google.maps.LatLngBounds(center);
-  //   // map.fitBounds(bounds);
-
-  //   setMap(map);
-  // }, []);
-
-  // const onUnmount = useCallback(function callback() {
-  //   setMap(null);
-  // }, []);
-
-  const containerStyle = {
-    width: "500px",
-    height: "483px",
-  };
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1200px)" });
 
   const center = {
     lat: -3.745,
     lng: -38.523,
   };
   return (
-    <div className="pt-5">
-      <Container className="image-stack vw-100 vh-90">
+    <>
+      <Container
+        fluid={!isTabletOrMobile ? false : true}
+        className={` ${
+          !isTabletOrMobile ? "vw-90 vh-95" : " vw-100 vh-70 m-auto"
+        } image-stack pt-5`}
+      >
         <Image
           rounded
-          className="image-stack__item image-stack__item--bottom "
+          className={` ${
+            !isTabletOrMobile
+              ? "image-stack__item--bottom"
+              : " image-stack__item--bottom_mobile"
+          }`}
           src={childDrawing}
         />
-        <Card className="d-flex flex-column bg-base image-stack__item image-stack__item--top justify-content-center align-items-center">
+        <Card
+          className={`d-flex flex-column bg-base  ${
+            !isTabletOrMobile
+              ? "image-stack__item--top"
+              : " image-stack__item--top_mobile"
+          }  justify-content-center align-items-center`}
+        >
           <Card.Text className="h1 text-light text-center fw-bolder">
             Simply 4 Childcare
           </Card.Text>
-          <Card.Text className="fs-5 text-light text-center">
+          <Card.Text
+            className={`${
+              !isTabletOrMobile ? "fs-5" : "fs-6"
+            } text-light text-center`}
+          >
             Providing quality care for your little ones
           </Card.Text>
           <Button className="w-50 " variant="secondary">
@@ -63,14 +64,33 @@ const Home = (): JSX.Element => {
       </Container>
       <Container
         fluid
-        className="d-flex flex-row align-content-center mb-5 text-light vh-60 bg-base"
+        className={`d-flex flex-wrap align-content-center text-light bg-base ${
+          !isTabletOrMobile ? "mb-6 flex-row" : "mb-4 flex-column"
+        }`}
       >
-        {/* <Container className="d-flex justify-content-center mw-50">  p-0 m-0 */}
-        <Image rounded className="ms-5 w-auto" src={welcome} />
-        {/* </Container> */}
-        <Container className="d-flex flex-column justify-content-center  mw-50">
-          <p className="fs-3">first of all</p>
-          <h1 className="">Welcome!</h1>
+        <Container
+          fluid={!isTabletOrMobile ? false : true}
+          className={`d-flex justify-content-center ${
+            !isTabletOrMobile ? "mw-40" : "m-0"
+          }`}
+        >
+          <Image
+            rounded
+            className={`${!isTabletOrMobile ? "ms-5 vh-60 vw-60" : "w-100"}`}
+            src={welcome}
+          />
+        </Container>
+        <Container
+          fluid={!isTabletOrMobile ? false : true}
+          className={`d-flex flex-column justify-content-center align-content-center ${
+            !isTabletOrMobile ? "mw-50" : "m-0"
+          }`}
+        >
+          {/* className={`m-0 ${!isTabletOrMobile ? "fs-3" : "fs-5"}`} */}
+          <p className="m-0 fs-3">first of all</p>
+          {/* className={`${!isTabletOrMobile ? "fs-1" : "fs-2"}`} */}
+          <h1>Welcome!</h1>
+          {/* className={`${!isTabletOrMobile ? "fs-4" : "fs-5"}`} */}
           <p className="fs-4">
             At Simply 4 Childcare we believe that 'every child is unique and has
             the ability to be resilient, capable, confident and self-assured'.
@@ -85,14 +105,29 @@ const Home = (): JSX.Element => {
           </p>
         </Container>
       </Container>
-      <Container className="d-flex flex-column pb-5 vh-80 justify-content-center">
+      <Container
+        fluid
+        // mb-6 vh-80 justify-content-center align-content-center
+        className="d-flex flex-column vh-100"
+      >
         <h1 className="text-center">Where to find us</h1>
         <Container
-          className={`d-flex flex-row text-light vw-60 ${
-            toggleForm ? "vh-60" : "vh-50"
+          fluid
+          className={`d-flex flex-row text-light 
+          ${
+            !isTabletOrMobile
+              ? toggleForm
+                ? " vw-65 flex-row vh-70"
+                : " vw-65 flex-row vh-60"
+              : " h-auto m-0 flex-column-reverse"
           }`}
         >
-          <Container fluid className="bg-base d-flex flex-column ">
+          <Container
+            fluid
+            className={`bg-base d-flex flex-column w-100 ${
+              !isTabletOrMobile ? "" : "vh-45"
+            }`}
+          >
             <TransitionGroup component="div" className="overflow-hidden">
               <CSSTransition
                 key={toggleForm.toString()}
@@ -105,15 +140,27 @@ const Home = (): JSX.Element => {
                   {toggleForm ? (
                     <ContactForm setToggleForm={setToggleForm} />
                   ) : (
-                    <div className="d-flex flex-column ">
-                      <h2 className="pt-4">Contact Details:</h2>
-                      <p>
+                    <div className="d-flex flex-column">
+                      <h1
+                        className={`${
+                          !isTabletOrMobile ? "fs-1 pt-4 " : "fs-3 "
+                        }`}
+                      >
+                        Contact Details:
+                      </h1>
+                      <p className={`${!isTabletOrMobile ? "fs-4" : "fs-6"}`}>
                         Email: <br />
                         Contact Number:
                       </p>
 
-                      <h2 className="pt-4">Opening Hours</h2>
-                      <p>
+                      <h1
+                        className={` ${
+                          !isTabletOrMobile ? "fs-1 pt-6" : "fs-3"
+                        }`}
+                      >
+                        Opening Hours
+                      </h1>
+                      <p className={`${!isTabletOrMobile ? "fs-5" : "fs-6"}`}>
                         We are open Monday to Friday 7.30am to 6.30pm <br />
                         51 weeks per year excluding Bank Holidays and INSET days
                         for children aged 3 months to 5 years.
@@ -131,23 +178,22 @@ const Home = (): JSX.Element => {
               </CSSTransition>
             </TransitionGroup>
           </Container>
-          <Container fluid className="d-flex w-auto p-0">
-            {isLoaded ? (
-              <GoogleMap
-                // mapContainerClassName={"w-90 vh-50"}
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={15}
-              >
-                <MarkerF position={center} />
-              </GoogleMap>
-            ) : (
-              <></>
-            )}
-          </Container>
+          {isLoaded ? (
+            <GoogleMap
+              mapContainerClassName={`w-100 ${
+                !isTabletOrMobile ? (toggleForm ? "vh-70" : "vh-60") : "vh-45"
+              } `}
+              center={center}
+              zoom={15}
+            >
+              <MarkerF position={center} />
+            </GoogleMap>
+          ) : (
+            <></>
+          )}
         </Container>
       </Container>
-    </div>
+    </>
   );
 };
 

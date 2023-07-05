@@ -1,8 +1,11 @@
 import { Container, Image } from "react-bootstrap";
 import nutrition from "../assests/nutrition.jpg";
 import menu from "../assests/sample-menu.png";
+import { useMediaQuery } from "react-responsive";
 
 const Nutrition = (): JSX.Element => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+
   return (
     <>
       <Container
@@ -22,11 +25,7 @@ const Nutrition = (): JSX.Element => {
 
       <Container className="d-flex flex-column justify-content-evenly pt-5">
         <h2>Sample Menu:</h2>
-        <Image
-          rounded
-          className="ms-5 w-auto vw-50 align-self-center "
-          src={menu}
-        />
+        <Image rounded className="m-auto w-100 align-self-center" src={menu} />
         <div>
           <p className="fw-bold">
             *Seasonal menus and allergen information available
