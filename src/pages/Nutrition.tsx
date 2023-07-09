@@ -20,7 +20,7 @@ const Nutrition = (): JSX.Element => {
         </div>
       </Container>
 
-      <Container className="d-flex flex-column justify-content-evenly pt-5">
+      <Container className="d-flex flex-column justify-content-evenly pt-5 bg-white">
         <h2>Sample Menu:</h2>
         <Image rounded className="m-auto w-100 align-self-center" src={menu} />
         <div>

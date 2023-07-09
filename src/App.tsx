@@ -7,11 +7,20 @@ import Approach from "./pages/Approach";
 import Nutrition from "./pages/Nutrition";
 import Navigationbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import bg from "./assests/test.jpg";
 
 function App() {
   return (
     <Router>
-      <div className="d-flex flex-column min-vh-100">
+      <div
+        className="d-flex flex-column min-vh-100"
+        style={{
+          backgroundImage: `url(${bg})`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+        }}
+      >
         <Navigationbar />
         <Routes>
           <Route path="/" element={<Home />} />

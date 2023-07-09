@@ -37,12 +37,12 @@ const Navigationbar = () => {
             <NavDropdown.Item href="/about-us/our-approach">
               Our Approach
             </NavDropdown.Item>
+            <NavDropdown.Item href="/about-us/our-environment">
+              Our Environment
+            </NavDropdown.Item>
           </NavDropdown>
           <NavLink className="fs-3" eventKey="3" as={Link} to="/nutrition">
             Nutrition
-          </NavLink>
-          <NavLink className="fs-3" eventKey="3" as={Link} to="/contact">
-            Contact
           </NavLink>
         </Nav>
       </Navbar.Collapse>

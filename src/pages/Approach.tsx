@@ -34,7 +34,10 @@ const Approach = (): JSX.Element => {
         </div>
       </Container>
 
-      <Container fluid className="d-flex flex-column p-0 overflow-hidden">
+      <Container
+        fluid
+        className="d-flex flex-column p-0 overflow-hidden h-auto"
+      >
         <h1 className="text-center">
           The Early Years Foundation Stage framework
         </h1>
@@ -61,7 +64,7 @@ const Approach = (): JSX.Element => {
                 </p>
                 <Container
                   className={`d-flex text-center w-100 ${
-                    !isTabletOrMobile ? " flex-row vh-50" : " flex-column "
+                    !isTabletOrMobile ? " flex-row" : " flex-column "
                   }`}
                 >
                   <Container className="d-flex flex-column text-center align-items-center p-0">

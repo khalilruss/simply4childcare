@@ -1,11 +1,14 @@
 import { Container, Image, Card, Button } from "react-bootstrap";
-import childDrawing from "../../assests/child-drawing.jpeg";
+// import childDrawing from "../../assests/child-drawing.jpeg";
+import childDrawing from "../../assests/drawing.jpg";
+
 import welcome from "../../assests/welcome.jpg";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 // import ReactCSSTransitionReplace from "react-css-transition-replace";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import cn from "classnames";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
@@ -27,17 +30,17 @@ const Home = (): JSX.Element => {
     <>
       <Container
         fluid={!isTabletOrMobile ? false : true}
-        className={` ${
-          !isTabletOrMobile ? "vw-90 vh-95" : " vw-100 vh-70 m-auto"
-        } image-stack pt-5`}
+        className={cn("image-stack ", {
+          "vw-90 vh-95": !isTabletOrMobile,
+          "vw-100 vh-90 m-auto": isTabletOrMobile,
+        })}
       >
         <Image
           rounded
-          className={` ${
-            !isTabletOrMobile
-              ? "image-stack__item--bottom"
-              : " image-stack__item--bottom_mobile"
-          }`}
+          className={cn({
+            "image-stack__item--bottom": !isTabletOrMobile,
+            "image-stack__item--bottom_mobile": isTabletOrMobile,
+          })}
           src={childDrawing}
         />
         <Card
@@ -64,33 +67,24 @@ const Home = (): JSX.Element => {
       </Container>
       <Container
         fluid
-        className={`d-flex flex-wrap align-content-center text-light bg-base ${
+        className={`d-flex  align-content-center text-light bg-base ${
           !isTabletOrMobile ? "mb-6 flex-row" : "mb-4 flex-column"
         }`}
       >
-        <Container
-          fluid={!isTabletOrMobile ? false : true}
-          className={`d-flex justify-content-center ${
-            !isTabletOrMobile ? "mw-40" : "m-0"
-          }`}
-        >
+        <div className="align-self-center">
           <Image
             rounded
-            className={`${!isTabletOrMobile ? "ms-5 vh-60 vw-60" : "w-100"}`}
+            className={`${!isTabletOrMobile ? "ms-5 vh-60 vw-40" : "w-100"}`}
             src={welcome}
           />
-        </Container>
-        <Container
-          fluid={!isTabletOrMobile ? false : true}
-          className={`d-flex flex-column justify-content-center align-content-center ${
-            !isTabletOrMobile ? "mw-50" : "m-0"
+        </div>
+        <div
+          className={`align-self-center ${
+            !isTabletOrMobile ? "mw-50 ms-4" : ""
           }`}
         >
-          {/* className={`m-0 ${!isTabletOrMobile ? "fs-3" : "fs-5"}`} */}
           <p className="m-0 fs-3">first of all</p>
-          {/* className={`${!isTabletOrMobile ? "fs-1" : "fs-2"}`} */}
           <h1>Welcome!</h1>
-          {/* className={`${!isTabletOrMobile ? "fs-4" : "fs-5"}`} */}
           <p className="fs-4">
             At Simply 4 Childcare we believe that 'every child is unique and has
             the ability to be resilient, capable, confident and self-assured'.
@@ -103,30 +97,28 @@ const Home = (): JSX.Element => {
             grow in confidence. The individuality of each child is celebrated
             and valued.
           </p>
-        </Container>
+        </div>
       </Container>
-      <Container
-        fluid
-        // mb-6 vh-80 justify-content-center align-content-center
-        className="d-flex flex-column vh-100"
-      >
+      <Container fluid className="d-flex flex-column mb-6">
         <h1 className="text-center">Where to find us</h1>
         <Container
           fluid
-          className={`d-flex flex-row text-light 
-          ${
-            !isTabletOrMobile
-              ? toggleForm
-                ? " vw-65 flex-row vh-70"
-                : " vw-65 flex-row vh-60"
-              : " h-auto m-0 flex-column-reverse"
-          }`}
+          className={cn("d-flex flex-row text-light", {
+            "vw-65 flex-row": !isTabletOrMobile,
+            "h-auto m-0 flex-column-reverse": isTabletOrMobile,
+            "vh-60": toggleForm && !isTabletOrMobile,
+            "vh-55": !toggleForm && !isTabletOrMobile,
+          })}
         >
           <Container
             fluid
-            className={`bg-base d-flex flex-column w-100 ${
-              !isTabletOrMobile ? "" : "vh-45"
-            }`}
+            className={cn(
+              "bg-base d-flex flex-column w-100 justify-content-center",
+              {
+                "vh-40": isTabletOrMobile && !toggleForm,
+                "vh-55": isTabletOrMobile && toggleForm,
+              }
+            )}
           >
             <TransitionGroup component="div" className="overflow-hidden">
               <CSSTransition
@@ -141,11 +133,7 @@ const Home = (): JSX.Element => {
                     <ContactForm setToggleForm={setToggleForm} />
                   ) : (
                     <div className="d-flex flex-column">
-                      <h1
-                        className={`${
-                          !isTabletOrMobile ? "fs-1 pt-4 " : "fs-3 "
-                        }`}
-                      >
+                      <h1 className={`${!isTabletOrMobile ? "fs-1" : "fs-3 "}`}>
                         Contact Details:
                       </h1>
                       <p className={`${!isTabletOrMobile ? "fs-4" : "fs-6"}`}>
@@ -181,7 +169,7 @@ const Home = (): JSX.Element => {
           {isLoaded ? (
             <GoogleMap
               mapContainerClassName={`w-100 ${
-                !isTabletOrMobile ? (toggleForm ? "vh-70" : "vh-60") : "vh-45"
+                !isTabletOrMobile ? (toggleForm ? "vh-60" : "vh-55") : "vh-45"
               } `}
               center={center}
               zoom={15}

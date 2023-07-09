@@ -6,7 +6,7 @@ const Footer = (): JSX.Element => {
       <Container>
         <Row>
           <Col md={6}>
-            <h5>About Us</h5>
+            <h5>Address</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Col>
           <Col md={6}>
