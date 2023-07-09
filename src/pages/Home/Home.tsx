@@ -4,10 +4,10 @@ import childDrawing from "../../assests/drawing.jpg";
 
 import welcome from "../../assests/welcome.jpg";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
-// import ReactCSSTransitionReplace from "react-css-transition-replace";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-scroll";
 import cn from "classnames";
 
 import "./Home.css";
@@ -26,13 +26,20 @@ const Home = (): JSX.Element => {
     lat: -3.745,
     lng: -38.523,
   };
+
+  const propagateClick = (event: MouseEvent<HTMLElement>) => {
+    (
+      (event.target as HTMLButtonElement).children[0] as HTMLLinkElement
+    ).click();
+  };
+
   return (
     <>
       <Container
         fluid={!isTabletOrMobile ? false : true}
         className={cn("image-stack ", {
           "vw-90 vh-95": !isTabletOrMobile,
-          "vw-100 vh-90 m-auto": isTabletOrMobile,
+          "vw-100 vh-60 mb-10": isTabletOrMobile,
         })}
       >
         <Image
@@ -60,8 +67,25 @@ const Home = (): JSX.Element => {
           >
             Providing quality care for your little ones
           </Card.Text>
-          <Button className="w-50 " variant="secondary">
-            Enquire Now!
+          <Button
+            className="w-50 "
+            onClick={(event) => {
+              setToggleForm(true);
+              propagateClick(event);
+            }}
+            variant="secondary"
+          >
+            <Link
+              className="text-lg font-medium text-white text-decoration-none"
+              activeClass="active"
+              type="submit"
+              to={"contact-form"}
+              smooth={true}
+              offset={-40}
+              onClick={() => setToggleForm(true)}
+            >
+              Enquire Now!
+            </Link>
           </Button>
         </Card>
       </Container>
@@ -112,21 +136,22 @@ const Home = (): JSX.Element => {
         >
           <Container
             fluid
-            className={cn(
-              "bg-base d-flex flex-column w-100 justify-content-center",
-              {
-                "vh-40": isTabletOrMobile && !toggleForm,
-                "vh-55": isTabletOrMobile && toggleForm,
-              }
-            )}
+            className={cn("bg-base d-flex flex-column w-100 ", {
+              "vh-40": isTabletOrMobile && !toggleForm,
+              "vh-55": isTabletOrMobile && toggleForm,
+            })}
           >
-            <TransitionGroup component="div" className="overflow-hidden">
+            <TransitionGroup
+              id="contact-form"
+              component="div"
+              className="overflow-hidden"
+            >
               <CSSTransition
                 key={toggleForm.toString()}
                 timeout={750}
                 classNames="pageSlider"
-                // mountOnEnter={false}
-                // unmountOnExit={true}
+                mountOnEnter={false}
+                unmountOnExit={true}
               >
                 <div className={`${toggleForm ? "left" : "right"}`}>
                   {toggleForm ? (
@@ -158,7 +183,7 @@ const Home = (): JSX.Element => {
                         variant="secondary"
                         onClick={() => setToggleForm(true)}
                       >
-                        Enquire Online!
+                        Contact Us
                       </Button>
                     </div>
                   )}

@@ -41,8 +41,16 @@ const Navigationbar = () => {
               Our Environment
             </NavDropdown.Item>
           </NavDropdown>
-          <NavLink className="fs-3" eventKey="3" as={Link} to="/nutrition">
+          <NavLink className="fs-3" eventKey="2" as={Link} to="/nutrition">
             Nutrition
+          </NavLink>
+          <NavLink
+            className="fs-3"
+            eventKey="3"
+            as={Link}
+            to="/parents-as-partners"
+          >
+            Parents as partners
           </NavLink>
         </Nav>
       </Navbar.Collapse>
