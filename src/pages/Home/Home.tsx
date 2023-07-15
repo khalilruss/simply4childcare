@@ -1,14 +1,17 @@
 import { Container, Image, Card, Button } from "react-bootstrap";
-// import childDrawing from "../../assests/child-drawing.jpeg";
-import childDrawing from "../../assests/drawing.jpg";
+import childDrawing from "../../assets/Home/stock-photo-kids-drawing-on-floor-on-paper-preschool-boy-and-girl-play-on-floor-with-educational-toys-blocks-1009485583.jpg";
+import handsTogether from "../../assets/hands-together.png";
+import woodenBlocks from "../../assets/Home/wooden-blocks.jpg";
+import playground from "../../assets/Home/playground.jpg";
 
-import welcome from "../../assests/welcome.jpg";
+import welcome from "../../assets/Home/welcome.jpg";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { useState, MouseEvent } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-scroll";
 import cn from "classnames";
+import ImageButton from "../../components/ImageButton/ImageButton";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
@@ -20,7 +23,9 @@ const Home = (): JSX.Element => {
   });
 
   const [toggleForm, setToggleForm] = useState<boolean>(false);
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1200px)" });
+  const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
+  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
+  const isSmallDesktop = useMediaQuery({ query: "(max-width: 1200px)" });
 
   const center = {
     lat: -3.745,
@@ -34,36 +39,40 @@ const Home = (): JSX.Element => {
   };
 
   return (
-    <>
-      <Container
-        fluid={!isTabletOrMobile ? false : true}
-        className={cn("image-stack ", {
-          "vw-90 vh-95": !isTabletOrMobile,
-          "vw-100 vh-60 mb-10": isTabletOrMobile,
+    <div className="d-flex flex-column align-items-center">
+      <div
+        className={cn("home-stack", {
+          "minw-80 mw-80 mt-5": !isMobile && !isTablet,
+          "mw-90 minw-90 mt-5": (isTablet || isSmallDesktop) && !isMobile,
+          "mb-6": !isMobile && !isTablet,
+          "mb-12": isTablet,
+          "vw-100 mt-5 mb-9": isMobile && isTablet,
         })}
       >
         <Image
           rounded
           className={cn({
-            "image-stack__item--bottom": !isTabletOrMobile,
-            "image-stack__item--bottom_mobile": isTabletOrMobile,
+            "home-stack__item--bottom": !isMobile && !isTablet,
+            "home-stack__item--bottom_tablet": isTablet,
+            "home-stack__item--bottom_mobile": isMobile,
           })}
           src={childDrawing}
         />
         <Card
-          className={`d-flex flex-column bg-base  ${
-            !isTabletOrMobile
-              ? "image-stack__item--top"
-              : " image-stack__item--top_mobile"
-          }  justify-content-center align-items-center`}
+          className={cn(
+            "d-flex flex-column bg-base justify-content-center align-items-center",
+            {
+              "home-stack__item--top": !isMobile && !isTablet,
+              "home-stack__item--top_tablet": isTablet,
+              " home-stack__item--top_mobile": isMobile,
+            }
+          )}
         >
           <Card.Text className="h1 text-light text-center fw-bolder">
             Simply 4 Childcare
           </Card.Text>
           <Card.Text
-            className={`${
-              !isTabletOrMobile ? "fs-5" : "fs-6"
-            } text-light text-center`}
+            className={`${!isMobile ? "fs-5" : "fs-6"} text-light text-center`}
           >
             Providing quality care for your little ones
           </Card.Text>
@@ -88,26 +97,29 @@ const Home = (): JSX.Element => {
             </Link>
           </Button>
         </Card>
-      </Container>
+      </div>
       <Container
         fluid
-        className={`d-flex  align-content-center text-light bg-base ${
-          !isTabletOrMobile ? "mb-6 flex-row" : "mb-4 flex-column"
+        className={`d-flex align-content-center text-light bg-base styled-div-left ${
+          !isTablet ? "mb-6 flex-row" : "mb-4 flex-column"
         }`}
       >
-        <div className="align-self-center">
+        <div className="d-flex align-self-center justify-content-center">
           <Image
-            rounded
-            className={`${!isTabletOrMobile ? "ms-5 vh-60 vw-40" : "w-100"}`}
+            roundedCircle
+            className={cn({
+              "ms-5 vh-60 ": !isTablet && !isMobile && !isSmallDesktop,
+              "vh-50": isSmallDesktop,
+              "w-100 pt-2": isTablet || isMobile,
+            })}
             src={welcome}
           />
         </div>
         <div
-          className={`align-self-center ${
-            !isTabletOrMobile ? "mw-50 ms-4" : ""
-          }`}
+          className={cn("align-self-center", {
+            "mw-50 ms-4": !isTablet && !isMobile && !isSmallDesktop,
+          })}
         >
-          <p className="m-0 fs-3">first of all</p>
           <h1>Welcome!</h1>
           <p className="fs-4">
             At Simply 4 Childcare we believe that 'every child is unique and has
@@ -124,21 +136,39 @@ const Home = (): JSX.Element => {
         </div>
       </Container>
       <Container fluid className="d-flex flex-column mb-6">
+        <h1 className="text-center"> Find Out More</h1>
+        <Container
+          fluid
+          className={cn("d-flex w-100", {
+            "flex-row justify-content-evenly": !isSmallDesktop,
+            "flex-column vh-100 justify-content-evenly align-items-center":
+              isSmallDesktop,
+          })}
+        >
+          <ImageButton image={handsTogether} buttonText="Our Ethos" />
+          <ImageButton image={woodenBlocks} buttonText="Our Approach" />
+          <ImageButton image={playground} buttonText="Our Environment" />
+        </Container>
+      </Container>
+      <Container fluid className="d-flex flex-column mb-6">
         <h1 className="text-center">Where to find us</h1>
         <Container
           fluid
-          className={cn("d-flex flex-row text-light", {
-            "vw-65 flex-row": !isTabletOrMobile,
-            "h-auto m-0 flex-column-reverse": isTabletOrMobile,
-            "vh-60": toggleForm && !isTabletOrMobile,
-            "vh-55": !toggleForm && !isTabletOrMobile,
+          className={cn("d-flex flex-row text-light align-self-center", {
+            "vw-65 flex-row": !isSmallDesktop,
+            "h-auto m-0 flex-column-reverse": isSmallDesktop,
+            "vh-60": toggleForm && !isSmallDesktop,
+            "vh-55": !toggleForm && !isSmallDesktop,
+            "vw-55": isSmallDesktop && !isMobile,
           })}
         >
           <Container
             fluid
             className={cn("bg-base d-flex flex-column w-100 ", {
-              "vh-40": isTabletOrMobile && !toggleForm,
-              "vh-55": isTabletOrMobile && toggleForm,
+              "vh-40": isSmallDesktop && !toggleForm,
+              "vh-55": isSmallDesktop && toggleForm,
+              "rounded-bottom-5": isSmallDesktop,
+              "rounded-start-5": !isSmallDesktop,
             })}
           >
             <TransitionGroup
@@ -149,7 +179,7 @@ const Home = (): JSX.Element => {
               <CSSTransition
                 key={toggleForm.toString()}
                 timeout={750}
-                classNames="pageSlider"
+                classNames="contactSlider"
                 mountOnEnter={false}
                 unmountOnExit={true}
               >
@@ -158,22 +188,20 @@ const Home = (): JSX.Element => {
                     <ContactForm setToggleForm={setToggleForm} />
                   ) : (
                     <div className="d-flex flex-column">
-                      <h1 className={`${!isTabletOrMobile ? "fs-1" : "fs-3 "}`}>
+                      <h1 className={`${!isSmallDesktop ? "fs-1" : "fs-3 "}`}>
                         Contact Details:
                       </h1>
-                      <p className={`${!isTabletOrMobile ? "fs-4" : "fs-6"}`}>
+                      <p className={`${!isSmallDesktop ? "fs-4" : "fs-6"}`}>
                         Email: <br />
                         Contact Number:
                       </p>
 
                       <h1
-                        className={` ${
-                          !isTabletOrMobile ? "fs-1 pt-6" : "fs-3"
-                        }`}
+                        className={` ${!isSmallDesktop ? "fs-1 pt-6" : "fs-3"}`}
                       >
                         Opening Hours
                       </h1>
-                      <p className={`${!isTabletOrMobile ? "fs-5" : "fs-6"}`}>
+                      <p className={`${!isSmallDesktop ? "fs-5" : "fs-6"}`}>
                         We are open Monday to Friday 7.30am to 6.30pm <br />
                         51 weeks per year excluding Bank Holidays and INSET days
                         for children aged 3 months to 5 years.
@@ -193,9 +221,13 @@ const Home = (): JSX.Element => {
           </Container>
           {isLoaded ? (
             <GoogleMap
-              mapContainerClassName={`w-100 ${
-                !isTabletOrMobile ? (toggleForm ? "vh-60" : "vh-55") : "vh-45"
-              } `}
+              mapContainerClassName={cn("w-100", {
+                "rounded-top-5": isSmallDesktop,
+                "rounded-end-5": !isSmallDesktop,
+                "vh-60": toggleForm,
+                "vh-55": !toggleForm,
+                "vh-45": isSmallDesktop,
+              })}
               center={center}
               zoom={15}
             >
@@ -206,7 +238,7 @@ const Home = (): JSX.Element => {
           )}
         </Container>
       </Container>
-    </>
+    </div>
   );
 };
 
