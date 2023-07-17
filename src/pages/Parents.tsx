@@ -3,26 +3,18 @@ import { useMediaQuery } from "react-responsive";
 import handshake from "../assets/Parents/stock-photo-japanese-parent-and-child-holding-hands-in-the-living-room-2325395553.jpg";
 import parents from "../assets/Parents/stock-photo-diverse-children-enjoying-playing-with-toys-1243109917.jpg";
 import atHome from "../assets/Parents/stock-photo-family-spend-time-happiness-holiday-togetherness-559207186.jpg";
+import Section from "../components/Section/Section";
+import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 
 const Parents = (): JSX.Element => {
   const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <>
-      <Container
-        fluid
-        style={{
-          backgroundImage: `url(${handshake})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-        className=" d-flex vh-50 justify-content-center align-items-center p-0"
-      >
-        <div className="color-overlay">
-          <h1 className="text-light fw-bolder">Parents as Partners</h1>
-        </div>
-      </Container>
+      <ImageOverlay
+        imageSrc={handshake}
+        content={<h1 className="text-light fw-bolder">Parents as Partners</h1>}
+      />
       <Container className="pt-5">
         <h2>Closures</h2>
         <p className="fs-4">
@@ -40,42 +32,28 @@ const Parents = (): JSX.Element => {
           registration/settling in visits.
         </p>
       </Container>
-      <Container
-        fluid
-        className={`d-flex align-content-center justify-content-evenly text-white mt-5 bg-base styled-div-right ${
-          !isTablet ? "mb-5 flex-row vh-60" : "mb-4 flex-column-reverse"
-        }`}
-      >
-        <div className="image-stack align-self-center w-35">
-          <div className=" image-stack__item--bottom-left bg-white" />
-          <Image
-            // roundedCircle
-            className="image-stack__item--top-right"
-            // className="vw-30 vh-50"
-            // className={cn({
-            //   "mw-95 ms-5 vh-60 ": !isTablet && !isMobile && !isSmallDesktop,
-            //   "vh-50": isSmallDesktop,
-            //   "w-100 pt-2": isTablet || isMobile,
-            // })}
-            src={atHome}
-          />
-        </div>
-        <div
-          className={`align-self-center ms-5 ${
-            !isTabletOrMobile ? "mw-40" : ""
-          }`}
-        >
-          <h2>Easy activities to do at home with your child</h2>
-          <p className="fs-4">Reading at home (Simply Reading)</p>
-          <p className="fs-4">Maths at home (Simply Maths) </p>
-          <p className="fs-4">
-            Sports, music and dance at home (Simply movement){" "}
-          </p>
-          <p className="fs-4">Healthy eating (Simply nutrition/recipes) </p>
-          <p className="fs-4">Outdoor learning (Simply outdoors) </p>
-          <p className="fs-4">Arts and crafts at home (Simply creative)</p>
-        </div>
-      </Container>
+      <Section
+        content={
+          <>
+            <h2>Easy activities to do at home with your child</h2>
+            <p className="fs-4">Reading at home (Simply Reading)</p>
+            <p className="fs-4">Maths at home (Simply Maths) </p>
+            <p className="fs-4">
+              Sports, music and dance at home (Simply movement){" "}
+            </p>
+            <p className="fs-4">Healthy eating (Simply nutrition/recipes) </p>
+            <p className="fs-4">Outdoor learning (Simply outdoors) </p>
+            <p className="fs-4">Arts and crafts at home (Simply creative)</p>
+          </>
+        }
+        imageSrc={atHome}
+        imagePosition="left"
+        imageWidth="w-35"
+        imageStacked={true}
+        stackDirection="right"
+        background={true}
+        curveDirection="right"
+      />
 
       <Container>
         <h2>Communication</h2>
@@ -100,46 +78,31 @@ const Parents = (): JSX.Element => {
           excitement of the growth of your child.
         </p>
       </Container>
-      <Container
-        fluid
-        className={`d-flex align-content-center justify-content-evenly text-white mt-5 bg-base styled-div-left ${
-          !isTablet ? "mb-5 flex-row vh-60" : "mb-4 flex-column-reverse"
-        }`}
-      >
-        <div
-          className={`align-self-center ms-5 ${
-            !isTabletOrMobile ? "mw-40" : ""
-          }`}
-        >
-          <h2>Parent carer workshops</h2>
-          <p className="fs-4">Potty training</p>
-          <p className="fs-4">Biting </p>
-          <p className="fs-4">New siblings </p>
-          <p className="fs-4">Establishing routines </p>
-          <p className="fs-4">Understanding child development </p>
-          <p className="fs-4"> School reediness </p>
-          <p className="fs-4">
-            Early Literacy, numeracy and introduction to phonics{" "}
-          </p>
-          <p className="fs-4">Dealing with unwanted behaviour </p>
-          <p className="fs-4">Understanding the EYFS curriculum </p>
-        </div>
-
-        <div className="image-stack align-self-center w-35">
-          <div className=" image-stack__item--bottom-right bg-white" />
-          <Image
-            // roundedCircle
-            className="image-stack__item--top-left"
-            // className="vw-30 vh-50"
-            // className={cn({
-            //   "mw-95 ms-5 vh-60 ": !isTablet && !isMobile && !isSmallDesktop,
-            //   "vh-50": isSmallDesktop,
-            //   "w-100 pt-2": isTablet || isMobile,
-            // })}
-            src={parents}
-          />
-        </div>
-      </Container>
+      <Section
+        content={
+          <>
+            <h2>Parent carer workshops</h2>
+            <p className="fs-4">Potty training</p>
+            <p className="fs-4">Biting </p>
+            <p className="fs-4">New siblings </p>
+            <p className="fs-4">Establishing routines </p>
+            <p className="fs-4">Understanding child development </p>
+            <p className="fs-4"> School reediness </p>
+            <p className="fs-4">
+              Early Literacy, numeracy and introduction to phonics{" "}
+            </p>
+            <p className="fs-4">Dealing with unwanted behaviour </p>
+            <p className="fs-4">Understanding the EYFS curriculum </p>
+          </>
+        }
+        imageSrc={parents}
+        imagePosition="right"
+        imageWidth="w-35"
+        imageStacked={true}
+        stackDirection="left"
+        background={true}
+        curveDirection="left"
+      />
     </>
   );
 };

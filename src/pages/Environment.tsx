@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import environment from "../assets/Environment/stock-photo-world-environment-day-concept-a-mother-s-hand-embrace-her-little-daughter-s-hands-child-hand-s-1999540577.jpg";
 import MediaCarousel from "../components/MediaCarousel/MediaCarousel";
+import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 
 const room1 = require.context("../assets/Environment/Room1", true);
 const room1Media = room1.keys().map((media) => room1(media));
@@ -15,23 +16,12 @@ const gardenMedia = garden.keys().map((media) => garden(media));
 const Environment = (): JSX.Element => {
   const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  console.log(typeof room1Media[1]);
   return (
     <>
-      <Container
-        fluid
-        style={{
-          backgroundImage: `url(${environment})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-        className=" d-flex vh-50 justify-content-center align-items-center p-0"
-      >
-        <div className="color-overlay">
-          <h1 className="text-light fw-bolder">Our Environment</h1>
-        </div>
-      </Container>
+      <ImageOverlay
+        imageSrc={environment}
+        content={<h1 className="text-light fw-bolder">Our Environment</h1>}
+      />
       <Container
         className={`d-flex align-content-center justify-content-between text-dark mt-5 ${
           !isTablet ? "mb-10 flex-row vh-60" : "mb-4 flex-column"
@@ -47,12 +37,12 @@ const Environment = (): JSX.Element => {
       </Container>
       <Container
         fluid
-        className={`d-flex flex-row justify-content-between mt-4 mb-8 text-white styled-div-left bg-base ${
+        className={`d-flex flex-row justify-content-between mt-4 text-white curved-section-left bg-base ${
           !isTabletOrMobile ? " flex-row vh-75" : "flex-column-reverse"
         } `}
       >
         <Container
-          className={`d-flex align-content-center justify-content-between text-white${
+          className={`d-flex align-content-center justify-content-between text-white ${
             !isTablet ? "flex-row" : "mb-4 flex-column"
           }`}
         >
@@ -70,7 +60,7 @@ const Environment = (): JSX.Element => {
         </Container>
       </Container>
       <Container
-        className={`d-flex justify-content-between text-dark mt-5 ${
+        className={`d-flex justify-content-between text-dark mt-7 ${
           !isTablet ? "mb-12 flex-row vh-60" : "mb-4 flex-column"
         }`}
       >

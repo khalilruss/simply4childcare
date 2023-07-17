@@ -9,6 +9,7 @@ import globe from "../assets/Approach/stock-photo-pupils-looking-at-globe-in-lib
 import arts from "../assets/Approach/stock-photo-group-of-small-nursery-school-children-with-teacher-indoors-in-classroom-painting-2029379030.jpg";
 import curious from "../assets/Approach/stock-photo-little-girl-holding-magnifying-glass-smiling-624381875.jpg";
 import { useMediaQuery } from "react-responsive";
+import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import cn from "classnames";
 
 const Approach = (): JSX.Element => {
@@ -19,25 +20,18 @@ const Approach = (): JSX.Element => {
 
   return (
     <div>
-      <Container
-        fluid
-        style={{
-          backgroundImage: `url(${banner})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-        className=" d-flex vh-50 justify-content-center align-items-center p-0"
-      >
-        <div className="d-flex flex-column color-overlay text-light">
-          <h1 className=" fw-bolder ">Our Approach</h1>
-          <p className="fs-4 w-0">
-            At Simply 4 Childcare we combine the Early Years Foundation Stage
-            framework with the ‘Curiosity Approach’ to plan for learning.
-          </p>
-        </div>
-      </Container>
-
+      <ImageOverlay
+        imageSrc={banner}
+        content={
+          <>
+            <h1 className=" fw-bolder ">Our Approach</h1>
+            <p className="fs-4 w-0">
+              At Simply 4 Childcare we combine the Early Years Foundation Stage
+              framework with the ‘Curiosity Approach’ to plan for learning.
+            </p>
+          </>
+        }
+      />
       <Container
         fluid
         className="d-flex flex-column p-0 overflow-hidden h-auto justify-content-center"
@@ -169,7 +163,7 @@ const Approach = (): JSX.Element => {
                   <h3>Mathematics</h3>
                   <Image
                     rounded
-                    className={cn("p-0", {
+                    className={cn("p-0 vw-20", {
                       "w-100": !isTabletOrMobile,
                       "w-40": isTabletOrMobile,
                       "w-60": isTablet,

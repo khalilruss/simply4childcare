@@ -14,12 +14,14 @@ import Approach from "./pages/Approach";
 import Nutrition from "./pages/Nutrition";
 import Parents from "./pages/Parents";
 import Environment from "./pages/Environment";
-import bg from "./assets/coloured-balls.jpeg";
-
 import Fees from "./pages/Fees";
+import bg from "./assets/balls-bg.svg";
 
 function App() {
-  const [backgroundSize, setBackgroundSize] = useState<number[]>([0, 0]);
+  const [backgroundSize, setBackgroundSize] = useState<number[]>([
+    window.innerWidth + window.innerWidth / 8,
+    2750,
+  ]);
   const { pathname } = useLocation();
   // const verticalContact = useMediaQuery({ query: "(max-width: 1200px)" });
 
@@ -35,7 +37,9 @@ function App() {
       const width = window.innerWidth;
       console.log(height);
       if (typeof height === "number") {
-        setBackgroundSize([width, height]);
+        if (height > 2750) {
+          setBackgroundSize([width, height]);
+        }
       }
     };
 
@@ -47,11 +51,6 @@ function App() {
     images.forEach((image) => {
       image.addEventListener("load", handleImageLoad);
     });
-
-    // const handleInitialRender = () => {
-    //   setTimeout(handleResize, 0); // Delay execution to allow content rendering
-    // };
-    // handleInitialRender();
 
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -83,9 +82,15 @@ function App() {
         <Route path="/about/our-ethos" element={<Ethos />} />
         <Route path="/about/our-approach" element={<Approach />} />
         <Route path="/about/our-environment" element={<Environment />} />
-        <Route path="/nutrition" element={<Nutrition />} />
-        <Route path="/parents-as-partners" element={<Parents />} />
-        <Route path="/fees-and-sessions" element={<Fees />} />
+        <Route path="/parent-information/nutrition" element={<Nutrition />} />
+        <Route
+          path="/parent-information/parents-as-partners"
+          element={<Parents />}
+        />
+        <Route
+          path="/parent-information/fees-and-sessions"
+          element={<Fees />}
+        />
       </Routes>
       <Footer />
     </div>

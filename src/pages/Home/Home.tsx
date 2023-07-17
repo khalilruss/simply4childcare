@@ -15,6 +15,7 @@ import ImageButton from "../../components/ImageButton/ImageButton";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
+import Section from "../../components/Section/Section";
 // ***REMOVED***
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
@@ -98,43 +99,31 @@ const Home = (): JSX.Element => {
           </Button>
         </Card>
       </div>
-      <Container
-        fluid
-        className={`d-flex align-content-center text-light bg-base styled-div-left ${
-          !isTablet ? "mb-6 flex-row" : "mb-4 flex-column"
-        }`}
-      >
-        <div className="d-flex align-self-center justify-content-center">
-          <Image
-            roundedCircle
-            className={cn({
-              "ms-5 vh-60 ": !isTablet && !isMobile && !isSmallDesktop,
-              "vh-50": isSmallDesktop,
-              "w-100 pt-2": isTablet || isMobile,
-            })}
-            src={welcome}
-          />
-        </div>
-        <div
-          className={cn("align-self-center", {
-            "mw-50 ms-4": !isTablet && !isMobile && !isSmallDesktop,
-          })}
-        >
-          <h1>Welcome!</h1>
-          <p className="fs-4">
-            At Simply 4 Childcare we believe that 'every child is unique and has
-            the ability to be resilient, capable, confident and self-assured'.
-          </p>
-          <p className="fs-4">
-            Our aim is to ensure each child’s early education experience is
-            positive and meaningful. We provide an environment for children that
-            is warm, welcoming, caring and secure where they are able to
-            experiment, have fun, take risks, learn from their experiences and
-            grow in confidence. The individuality of each child is celebrated
-            and valued.
-          </p>
-        </div>
-      </Container>
+      <Section
+        content={
+          <>
+            <h1>Welcome!</h1>
+            <p className="fs-4">
+              At Simply 4 Childcare we believe that 'every child is unique and
+              has the ability to be resilient, capable, confident and
+              self-assured'.
+            </p>
+            <p className="fs-4">
+              Our aim is to ensure each child’s early education experience is
+              positive and meaningful. We provide an environment for children
+              that is warm, welcoming, caring and secure where they are able to
+              experiment, have fun, take risks, learn from their experiences and
+              grow in confidence. The individuality of each child is celebrated
+              and valued.
+            </p>
+          </>
+        }
+        imageSrc={welcome}
+        background={true}
+        imageStacked={false}
+        imagePosition="left"
+        curveDirection="left"
+      />
       <Container fluid className="d-flex flex-column mb-6">
         <h1 className="text-center"> Find Out More</h1>
         <Container

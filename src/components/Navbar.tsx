@@ -1,7 +1,7 @@
 import { Nav, Navbar, NavLink, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import bg from "../assets/coloured-balls.jpeg";
+import bg from "../assets/balls-bg.svg";
 
 const Navigationbar = () => {
   return (
@@ -33,7 +33,7 @@ const Navigationbar = () => {
         data-bs-toggle="collapse"
         data-bs-target="#navbarScroll"
       />
-      <Navbar.Collapse className="justify-content-between" id="navbarScroll">
+      <Navbar.Collapse className="justify-content-evenly" id="navbarScroll">
         <Nav>
           <NavLink className="fs-3" eventKey="1" as={Link} to="/">
             Home
@@ -52,25 +52,27 @@ const Navigationbar = () => {
               Our Environment
             </NavDropdown.Item>
           </NavDropdown>
-          <NavLink className="fs-3" eventKey="6" as={Link} to="/nutrition">
-            Nutrition
-          </NavLink>
-          <NavLink
+          <NavDropdown
             className="fs-3"
-            eventKey="7"
-            as={Link}
-            to="/parents-as-partners"
+            title="Parent Information"
+            id="basic-nav-dropdown"
           >
-            Parents
-          </NavLink>
-          <NavLink
-            className="fs-3"
-            eventKey="8"
-            as={Link}
-            to="/fees-and-sessions"
-          >
-            Fees & Sessions
-          </NavLink>
+            <NavDropdown.Item
+              eventKey="6"
+              href="/parent-information/parents-as-partners"
+            >
+              Parents as Partners
+            </NavDropdown.Item>
+            <NavDropdown.Item eventKey="7" href="/parent-information/nutrition">
+              Nutrition
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              eventKey="8"
+              href="/parent-information/fees-and-sessions"
+            >
+              Fees & Sessions
+            </NavDropdown.Item>
+          </NavDropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

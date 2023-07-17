@@ -1,23 +1,14 @@
 import { Container, Table } from "react-bootstrap";
+import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import counting from "../assets/Fees/stock-photo-little-boy-counting-his-savings-167008340.jpg";
 
 const Fees = (): JSX.Element => {
   return (
     <>
-      <Container
-        fluid
-        style={{
-          backgroundImage: `url(${counting})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-        className=" d-flex vh-50 justify-content-center align-items-center p-0"
-      >
-        <div className="color-overlay">
-          <h1 className="text-light fw-bolder">Fees & Sessions</h1>
-        </div>
-      </Container>
+      <ImageOverlay
+        imageSrc={counting}
+        content={<h1 className="text-light fw-bolder">Fees & Sessions</h1>}
+      />
       <Container>
         <h1>Sessions:</h1>
         <p className="fs-4">
