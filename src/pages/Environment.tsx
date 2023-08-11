@@ -16,7 +16,7 @@ const garden = require.context("../assets/Environment/Garden", true);
 const gardenMedia = garden.keys().map((media) => garden(media));
 
 const Environment = (): JSX.Element => {
-  const { isXs, isSm, isMd, isLg, isXl, isXXl, isTablet } = useScreenSize();
+  const { isXs, isSm, isMd, isLg, isTablet } = useScreenSize();
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (

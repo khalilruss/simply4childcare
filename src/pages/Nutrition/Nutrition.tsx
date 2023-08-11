@@ -1,23 +1,15 @@
-import { Container, Carousel, CarouselItem, Table } from "react-bootstrap";
-import { useMediaQuery } from "react-responsive";
+import { Container } from "react-bootstrap";
 import nutrition from "../../assets/Nutrition/stock-photo-healthy-lunch-table-scene-with-nutritious-lettuce-wraps-buddha-bowl-vegetables-sandwiches-and-1674278998.jpg";
 import lunch from "../../assets/Nutrition/lunch.jpg";
 import healthy from "../../assets/Nutrition/stock-photo-child-little-girl-eats-vegetable-salad-using-fork-309721823.jpg";
 import MediaCarousel from "../../components/MediaCarousel/MediaCarousel";
-import cn from "classnames";
 import ImageOverlay from "../../components/ImageTextOverlay/ImageTextOverlay";
 import Section from "../../components/Section/Section";
-import menus from "./Menus";
-import MenuTable from "../../components/MenuTable";
 
 const menuPictures = require.context("../../assets/Nutrition/Menus", true);
 const menuMedia = menuPictures.keys().map((menu) => menuPictures(menu));
 
 const Nutrition = (): JSX.Element => {
-  const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
-  const isSmallDesktop = useMediaQuery({ query: "(max-width: 1200px)" });
-
   return (
     <>
       <ImageOverlay

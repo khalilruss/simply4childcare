@@ -1,7 +1,6 @@
 import { Nav, Navbar, NavLink, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../assets/Lorenes-House2.svg";
-import bg from "../assets/drawing.svg";
 import "./Navbar.css";
 
 const Navigationbar = () => {
@@ -17,7 +16,6 @@ const Navigationbar = () => {
       expand="md"
       bg="white"
       sticky="top"
-      // className="custom-navbar"
     >
       <Container className="d-flex w-50 justify-content-center">
         <Navbar.Brand href="/" className="bg-white">

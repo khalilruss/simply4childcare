@@ -12,28 +12,12 @@ import { useMediaQuery } from "react-responsive";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import cn from "classnames";
 import Area from "../components/Area";
+import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
 
 const Approach = (): JSX.Element => {
-  const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 800px)" });
-  // const isSmallDesktop = useMediaQuery({ query: "(max-width: 1200px)" });
+  const { isXs, isSm, isMd, isLg, isXl, isXXl, isTablet } = useScreenSize();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  const breakpoints = {
-    xs: "(max-width: 576px)",
-    sm: "(min-width: 576px) and (max-width: 768px)",
-    md: "(min-width: 768px) and (max-width: 992px)",
-    lg: "(min-width: 992px) and (max-width: 1200px)",
-    xl: "(min-width: 1200px) and (max-width: 1400px)",
-    xxl: "(min-width: 1400px)",
-  };
 
-  // Use useMediaQuery with the defined breakpoints
-  const isXs = useMediaQuery({ query: breakpoints.xs });
-  const isSm = useMediaQuery({ query: breakpoints.sm });
-  const isMd = useMediaQuery({ query: breakpoints.md });
-  const isLg = useMediaQuery({ query: breakpoints.lg });
-  const isXl = useMediaQuery({ query: breakpoints.xl });
-  const isXXl = useMediaQuery({ query: breakpoints.xxl });
   return (
     <div>
       <ImageOverlay

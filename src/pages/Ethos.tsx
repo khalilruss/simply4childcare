@@ -2,13 +2,10 @@ import rainbow from "../assets/Ethos/stock-photo-close-up-photo-of-child-s-hands
 import thinking from "../assets/Ethos/stock-photo-successful-black-child-student-pointing-at-lightbulb-brainstorming-and-idea-concept-1759350455.jpg";
 import quality from "../assets/Ethos/learning-day-care-center-icon.jpg";
 import relationship from "../assets/Ethos/stock-photo-beautiful-mom-and-daughter-drawing-on-the-floor-75683242.jpg";
-import { useMediaQuery } from "react-responsive";
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 
 const Ethos = (): JSX.Element => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-
   return (
     <>
       <ImageOverlay
