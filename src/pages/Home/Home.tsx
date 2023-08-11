@@ -29,8 +29,8 @@ const Home = (): JSX.Element => {
   const isSmallDesktop = useMediaQuery({ query: "(max-width: 1200px)" });
 
   const center = {
-    lat: -3.745,
-    lng: -38.523,
+    lat: 51.45433,
+    lng: -0.12201,
   };
 
   const propagateClick = (event: MouseEvent<HTMLElement>) => {
@@ -46,7 +46,7 @@ const Home = (): JSX.Element => {
           "minw-80 mw-80 mt-5": !isMobile && !isTablet,
           "mw-90 minw-90 mt-5": (isTablet || isSmallDesktop) && !isMobile,
           "mb-6": !isMobile && !isTablet,
-          "mb-12": isTablet,
+          "mb-12": isTablet && !isMobile,
           "vw-100 mt-5 mb-9": isMobile && isTablet,
         })}
       >
@@ -69,11 +69,15 @@ const Home = (): JSX.Element => {
             }
           )}
         >
-          <Card.Text className="h1 text-light text-center fw-bolder">
-            Simply 4 Childcare
+          <Card.Text className="text-light text-center">
+            <span className="h1 fw-bolder">Welcome to Lorene's House</span>
+            <br />
+            <span className="fs-3 ">(Part of the Simply 4 Group)</span>
           </Card.Text>
           <Card.Text
-            className={`${!isMobile ? "fs-5" : "fs-6"} text-light text-center`}
+            className={`${
+              !isMobile ? "fs-5" : "fs-6"
+            } mt-2 text-light text-center`}
           >
             Providing quality care for your little ones
           </Card.Text>
@@ -120,27 +124,47 @@ const Home = (): JSX.Element => {
         }
         imageSrc={welcome}
         background={true}
+        backgroundColor="bg-light-green"
         imageStacked={false}
         imagePosition="left"
         curveDirection="left"
       />
-      <Container fluid className="d-flex flex-column mb-6">
-        <h1 className="text-center"> Find Out More</h1>
+      <Container
+        fluid
+        className={cn("d-flex flex-column mb-6", {
+          "mt-3": !isMobile && !isTablet,
+          "mt-6": isTablet && !isMobile,
+        })}
+      >
+        <h1 className="bg-white w-auto align-self-center">Find Out More</h1>
         <Container
           fluid
-          className={cn("d-flex w-100", {
-            "flex-row justify-content-evenly": !isSmallDesktop,
-            "flex-column vh-100 justify-content-evenly align-items-center":
-              isSmallDesktop,
-          })}
+          className={"d-flex w-100 flex-wrap flex-row justify-content-evenly"}
         >
-          <ImageButton image={handsTogether} buttonText="Our Ethos" />
-          <ImageButton image={woodenBlocks} buttonText="Our Approach" />
-          <ImageButton image={playground} buttonText="Our Environment" />
+          <ImageButton
+            imageSrc={handsTogether}
+            backgroundColor="bg-light-pink"
+            buttonText="About Us"
+          />
+          <ImageButton
+            imageSrc={handsTogether}
+            backgroundColor="bg-yellow"
+            buttonText="Our Ethos"
+          />
+          <ImageButton
+            imageSrc={woodenBlocks}
+            backgroundColor="bg-light-green"
+            buttonText="Our Approach"
+          />
+          <ImageButton
+            imageSrc={playground}
+            backgroundColor="bg-turquoise"
+            buttonText="Our Environment"
+          />
         </Container>
       </Container>
       <Container fluid className="d-flex flex-column mb-6">
-        <h1 className="text-center">Where to find us</h1>
+        <h1 className="bg-white w-auto align-self-center">Where to find us</h1>
         <Container
           fluid
           className={cn("d-flex flex-row text-light align-self-center", {
@@ -153,7 +177,7 @@ const Home = (): JSX.Element => {
         >
           <Container
             fluid
-            className={cn("bg-base d-flex flex-column w-100 ", {
+            className={cn("bg-light-pink d-flex flex-column w-100 ", {
               "vh-40": isSmallDesktop && !toggleForm,
               "vh-55": isSmallDesktop && toggleForm,
               "rounded-bottom-5": isSmallDesktop,

@@ -1,28 +1,29 @@
 import { Nav, Navbar, NavLink, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
-import bg from "../assets/balls-bg.svg";
+import logo from "../assets/Lorenes-House2.svg";
+import bg from "../assets/drawing.svg";
+import "./Navbar.css";
 
 const Navigationbar = () => {
   return (
     <Navbar
-      style={{
-        backgroundImage: `url(${bg})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
+      // style={{
+      //   backgroundImage: `url(${bg})`,
+      //   backgroundRepeat: "no-repeat",
+      //   backgroundPosition: "center",
+      //   backgroundSize: "cover",
+      // }}
       collapseOnSelect
-      expand="sm"
-      bg="light"
+      expand="md"
+      bg="white"
       sticky="top"
+      // className="custom-navbar"
     >
       <Container className="d-flex w-50 justify-content-center">
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/" className="bg-white">
           <img
             src={logo}
-            width="150"
-            height="70"
+            height="120rem"
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           />
@@ -33,12 +34,20 @@ const Navigationbar = () => {
         data-bs-toggle="collapse"
         data-bs-target="#navbarScroll"
       />
-      <Navbar.Collapse className="justify-content-evenly" id="navbarScroll">
+      <Navbar.Collapse className="justify-content-evenly " id="navbarScroll">
         <Nav>
-          <NavLink className="fs-3" eventKey="1" as={Link} to="/">
+          <NavLink
+            className="fs-3 text-green bg-white"
+            eventKey="1"
+            as={Link}
+            to="/"
+          >
             Home
           </NavLink>
-          <NavDropdown className="fs-3" title="About" id="basic-nav-dropdown">
+          <NavDropdown
+            className="fs-3 bg-white"
+            title={<span className="fs-3 text-dark-pink">About</span>}
+          >
             <NavDropdown.Item eventKey="2" href="/about/about-us">
               About Us
             </NavDropdown.Item>
@@ -53,8 +62,10 @@ const Navigationbar = () => {
             </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
-            className="fs-3"
-            title="Parent Information"
+            className="fs-3 bg-white"
+            title={
+              <span className="fs-3 text-turquoise">Parent Information</span>
+            }
             id="basic-nav-dropdown"
           >
             <NavDropdown.Item

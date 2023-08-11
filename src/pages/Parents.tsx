@@ -13,9 +13,13 @@ const Parents = (): JSX.Element => {
     <>
       <ImageOverlay
         imageSrc={handshake}
-        content={<h1 className="text-light fw-bolder">Parents as Partners</h1>}
+        content={
+          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+            Parents as Partners
+          </h1>
+        }
       />
-      <Container className="pt-5">
+      <Container className="mt-5 bg-white">
         <h2>Closures</h2>
         <p className="fs-4">
           Please note that we are closed on Public/Bank Holidays and INSET days.
@@ -51,11 +55,13 @@ const Parents = (): JSX.Element => {
         imageWidth="w-35"
         imageStacked={true}
         stackDirection="right"
+        stackBackgroundColor="bg-dark-yellow"
         background={true}
+        backgroundColor="bg-light-green"
         curveDirection="right"
       />
 
-      <Container>
+      <Container className="mt-5 bg-white">
         <h2>Communication</h2>
         <p className="fs-4">
           As well as daily verbal feedback we use an online daily diary to help
@@ -100,7 +106,9 @@ const Parents = (): JSX.Element => {
         imageWidth="w-35"
         imageStacked={true}
         stackDirection="left"
+        stackBackgroundColor="bg-yellow"
         background={true}
+        backgroundColor="bg-light-pink"
         curveDirection="left"
       />
     </>

@@ -4,6 +4,30 @@
   text-align: center;
 }
 
+.no-border td {
+  border-top: white solid 1px !important;
+}
+
+.carousel-control-prev-icon{
+  filter: invert(1);
+}
+ 
+.carousel-control-next-icon{
+  filter: invert(1);
+}
+
+.carousel-indicators button{
+  filter: invert(1);
+}
+.content-container {
+  flex: 1;
+}
+
+.text-with-border {
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+}
+
 /* .img {
   float: left;
   width:  650px;

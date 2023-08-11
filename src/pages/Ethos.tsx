@@ -13,7 +13,11 @@ const Ethos = (): JSX.Element => {
     <>
       <ImageOverlay
         imageSrc={rainbow}
-        content={<h1 className="text-light fw-bolder">Our Ethos</h1>}
+        content={
+          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+            Our Ethos
+          </h1>
+        }
       />
       <Section
         content={
@@ -28,6 +32,7 @@ const Ethos = (): JSX.Element => {
         imagePosition="right"
         imageWidth="w-40"
         imageStacked={true}
+        stackBackgroundColor="bg-dark-pink"
         stackDirection="left"
         background={false}
       />
@@ -48,9 +53,10 @@ const Ethos = (): JSX.Element => {
         imageWidth="w-40"
         imageStacked={true}
         stackDirection="right"
+        stackBackgroundColor="bg-dark-pink"
         background={true}
+        backgroundColor="bg-green"
         curveDirection="left"
-        sectionHeight="vh-70"
       />
       <Section
         content={
@@ -69,6 +75,7 @@ const Ethos = (): JSX.Element => {
         imageWidth="w-35"
         imageStacked={true}
         stackDirection="left"
+        stackBackgroundColor="bg-base"
         background={false}
         marginBottom="mb-7"
       />

@@ -2,8 +2,7 @@
     display: grid;
     position: relative; 
     grid-template-columns: repeat(15, 1fr);
-    align-content: center;
-    
+    align-content: center;    
   }
   
   .image-stack__item--bottom-left {

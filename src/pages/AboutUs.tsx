@@ -12,8 +12,10 @@ const AboutUs = (): JSX.Element => {
         imageSrc={children}
         content={
           <>
-            <h1 className=" fw-bolder ">About Us</h1>
-            <p className="fs-4 w-0">
+            <h1 className=" fw-bolder " style={{ fontSize: "5rem" }}>
+              About Us
+            </h1>
+            <p className="fs-2 w-0">
               Every day at Simply 4 Childcare is packed with fun-filled learning
               and adventures.
             </p>
@@ -36,8 +38,9 @@ const AboutUs = (): JSX.Element => {
         imageSrc={childPlaying}
         imagePosition="right"
         imageWidth="w-35"
-        stackDirection="left"
         imageStacked={true}
+        stackDirection="left"
+        stackBackgroundColor="bg-yellow"
         background={false}
       />
       <Section
@@ -63,7 +66,9 @@ const AboutUs = (): JSX.Element => {
         imageWidth="w-35"
         imageStacked={true}
         stackDirection="right"
+        stackBackgroundColor="bg-dark-yellow"
         background={true}
+        backgroundColor="bg-dark-pink"
         curveDirection="left"
       />
       <Section
@@ -88,6 +93,7 @@ const AboutUs = (): JSX.Element => {
         imagePosition="right"
         imageWidth="w-35"
         imageStacked={true}
+        stackBackgroundColor="bg-green"
         stackDirection="left"
         background={false}
       />

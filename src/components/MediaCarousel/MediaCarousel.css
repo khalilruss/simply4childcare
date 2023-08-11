@@ -1,40 +1,29 @@
-.carousel .carousel-control-prev-icon {
-  visibility: hidden;
-}
-
-.carousel:hover .carousel-control-prev-icon {
-  visibility: visible;
-}
-
-.carousel .carousel-control-next-icon {
-  visibility: hidden;
-}
-.carousel:hover .carousel-control-next-icon {
-  visibility: visible;
-}
-
 .carousel-video-wrapper {
 position: relative;
 width: 100%;
 height: 100%;
 }
-.carousel-video-wrapper .react-player {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
+
+.swiper {
+  overflow-y: visible;
+  width: 80%;
+  height: 100%;
 }
 
-.carousel-image-wrapper {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-height: 100%;
+.swiper-pagination {
+  position: absolute;
+  bottom: -20px !important;
+}
+.swiper-slide {
+  aspect-ratio: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.carousel .slide img {
-  max-height: 100vh;
-  width: auto
-}
+/* .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */

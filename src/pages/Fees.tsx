@@ -7,9 +7,13 @@ const Fees = (): JSX.Element => {
     <>
       <ImageOverlay
         imageSrc={counting}
-        content={<h1 className="text-light fw-bolder">Fees & Sessions</h1>}
+        content={
+          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+            Fees & Sessions
+          </h1>
+        }
       />
-      <Container>
+      <Container className="bg-white">
         <h1>Sessions:</h1>
         <p className="fs-4">
           Full Day sessions - 8.00am-6.00pm, 52 weeks per year (Charges still
