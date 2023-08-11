@@ -1,5 +1,4 @@
-import { Container, Image } from "react-bootstrap";
-import { useMediaQuery } from "react-responsive";
+import { Container } from "react-bootstrap";
 import handshake from "../assets/Parents/stock-photo-japanese-parent-and-child-holding-hands-in-the-living-room-2325395553.jpg";
 import parents from "../assets/Parents/stock-photo-diverse-children-enjoying-playing-with-toys-1243109917.jpg";
 import atHome from "../assets/Parents/stock-photo-family-spend-time-happiness-holiday-togetherness-559207186.jpg";
@@ -7,8 +6,6 @@ import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 
 const Parents = (): JSX.Element => {
-  const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <>
       <ImageOverlay
