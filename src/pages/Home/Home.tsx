@@ -1,17 +1,18 @@
 import { Container, Image, Card, Button } from "react-bootstrap";
 import childDrawing from "../../assets/Home/stock-photo-kids-drawing-on-floor-on-paper-preschool-boy-and-girl-play-on-floor-with-educational-toys-blocks-1009485583.jpg";
-import handsTogether from "../../assets/hands-together.png";
+import handsTogether from "../../assets/Home/stock-photo-diverse-classmates-holding-arms-on-campus-309237581.jpg";
 import woodenBlocks from "../../assets/Home/wooden-blocks.jpg";
 import playground from "../../assets/Home/playground.jpg";
-
-import welcome from "../../assets/Home/welcome.jpg";
+import smileyHands from "../../assets/Home/stock-photo-nursery-children-playing-with-teacher-in-the-classroom-1240454104.jpg";
+import welcome from "../../assets/Home/stock-photo--the-very-best-of-friends-children-in-preschool-1418714162.jpg";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { useState, MouseEvent } from "react";
-import { useMediaQuery } from "react-responsive";
+import { motion, AnimatePresence } from "framer-motion";
+
+import { useState, MouseEvent, useRef, useEffect } from "react";
 import { Link } from "react-scroll";
 import cn from "classnames";
 import ImageButton from "../../components/ImageButton/ImageButton";
+import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
@@ -20,13 +21,34 @@ import Section from "../../components/Section/Section";
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "***REMOVED***",
+    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
   });
 
+  const contentRef = useRef<HTMLInputElement>(null);
   const [toggleForm, setToggleForm] = useState<boolean>(false);
-  const isTablet = useMediaQuery({ query: "(max-width: 1000px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 600px)" });
-  const isSmallDesktop = useMediaQuery({ query: "(max-width: 1200px)" });
+  const [contentHeight, setContentHeight] = useState<number>(0);
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    }, 10); // Adjust the delay as needed
+
+    return () => clearTimeout(delay);
+  }, [contentRef, toggleForm]);
+
+  const {
+    isXXs,
+    isXs,
+    isSm,
+    isMd,
+    isLg,
+    isXl,
+    isXXl,
+    isTablet,
+    isMobile,
+    isSmallScreen,
+  } = useScreenSize();
 
   const center = {
     lat: 51.45433,
@@ -42,20 +64,20 @@ const Home = (): JSX.Element => {
   return (
     <div className="d-flex flex-column align-items-center">
       <div
-        className={cn("home-stack", {
-          "minw-80 mw-80 mt-5": !isMobile && !isTablet,
-          "mw-90 minw-90 mt-5": (isTablet || isSmallDesktop) && !isMobile,
-          "mb-6": !isMobile && !isTablet,
-          "mb-12": isTablet && !isMobile,
-          "vw-100 mt-5 mb-9": isMobile && isTablet,
+        className={cn("home-stack mt-5", {
+          "minw-80 mw-80 mb-6": isXXl || isXl,
+          "mw-90 minw-90 ": isLg || isMd,
+          "vw-100 ": isSm || isXs || isXXs,
+          "mb-6": isXXl || isXl || isLg,
+          "mb-9": isSm || isMd,
+          "mb-10": isXs || isXXs,
         })}
       >
         <Image
           rounded
           className={cn({
-            "home-stack__item--bottom": !isMobile && !isTablet,
-            "home-stack__item--bottom_tablet": isTablet,
-            "home-stack__item--bottom_mobile": isMobile,
+            "home-stack-bottom-item": isXXl || isXl || isLg,
+            "home-stack-bottom-item-mobile": isMd || isSm || isXs || isXXs,
           })}
           src={childDrawing}
         />
@@ -63,21 +85,25 @@ const Home = (): JSX.Element => {
           className={cn(
             "d-flex flex-column bg-base justify-content-center align-items-center",
             {
-              "home-stack__item--top": !isMobile && !isTablet,
-              "home-stack__item--top_tablet": isTablet,
-              " home-stack__item--top_mobile": isMobile,
+              "home-stack-top-item": isXXl || isXl || isLg,
+              "home-stack-top-item-mobile": isMd || isSm || isXs || isXXs,
+              "top-45 h-60": isMd || isSm || isXs,
+              "top-60 h-90": isXXs,
             }
           )}
         >
           <Card.Text className="text-light text-center">
-            <span className="h1 fw-bolder">Welcome to Lorene's House</span>
-            <br />
-            <span className="fs-3 ">(Part of the Simply 4 Group)</span>
+            <h1 className={`${!isMobile ? "fs-1" : "m-0"} fw-bolder`}>
+              Welcome to Lorene's House
+            </h1>
+            <span className={`${!isMobile ? "fs-3" : "fs-6"}`}>
+              (Part of the Simply 4 Group)
+            </span>
           </Card.Text>
           <Card.Text
             className={`${
-              !isMobile ? "fs-5" : "fs-6"
-            } mt-2 text-light text-center`}
+              !isMobile ? "fs-5 mt-2 " : "fs-6"
+            } text-light text-center`}
           >
             Providing quality care for your little ones
           </Card.Text>
@@ -95,7 +121,7 @@ const Home = (): JSX.Element => {
               type="submit"
               to={"contact-form"}
               smooth={true}
-              offset={-40}
+              // offset={-40}
               onClick={() => setToggleForm(true)}
             >
               Enquire Now!
@@ -142,7 +168,7 @@ const Home = (): JSX.Element => {
           className={"d-flex w-100 flex-wrap flex-row justify-content-evenly"}
         >
           <ImageButton
-            imageSrc={handsTogether}
+            imageSrc={smileyHands}
             backgroundColor="bg-light-pink"
             buttonText="About Us"
           />
@@ -167,82 +193,94 @@ const Home = (): JSX.Element => {
         <h1 className="bg-white w-auto align-self-center">Where to find us</h1>
         <Container
           fluid
-          className={cn("d-flex flex-row text-light align-self-center", {
-            "vw-65 flex-row": !isSmallDesktop,
-            "h-auto m-0 flex-column-reverse": isSmallDesktop,
-            "vh-60": toggleForm && !isSmallDesktop,
-            "vh-55": !toggleForm && !isSmallDesktop,
-            "vw-55": isSmallDesktop && !isMobile,
+          className={cn("d-flex text-light align-self-center", {
+            "flex-row": isXXl || isXl,
+            "h-auto m-0 flex-column-reverse":
+              isLg || isMd || isSm || isXs || isXXs,
+            "vw-65": isXXl,
+            "vw-70 ": isXl || isSm || isXs,
+            "vw-55": isLg || isMd,
+            "vw-95": isXXs,
+            // "vh-60": toggleForm && !(isXXl || isXl),
+            // "vh-55": !toggleForm && !(isLg || isMd || isSm || isXs || isXXs),
           })}
         >
           <Container
             fluid
-            className={cn("bg-light-pink d-flex flex-column w-100 ", {
-              "vh-40": isSmallDesktop && !toggleForm,
-              "vh-55": isSmallDesktop && toggleForm,
-              "rounded-bottom-5": isSmallDesktop,
-              "rounded-start-5": !isSmallDesktop,
+            ref={contentRef}
+            className={cn("bg-light-pink d-flex flex-column w-100 h-auto", {
+              "rounded-bottom-5": isSmallScreen,
+              "rounded-start-5": !isSmallScreen,
             })}
           >
-            <TransitionGroup
-              id="contact-form"
-              component="div"
-              className="overflow-hidden"
-            >
-              <CSSTransition
-                key={toggleForm.toString()}
-                timeout={750}
-                classNames="contactSlider"
-                mountOnEnter={false}
-                unmountOnExit={true}
-              >
-                <div className={`${toggleForm ? "left" : "right"}`}>
-                  {toggleForm ? (
+            <div id="contact-form" className="overflow-hidden h-auto">
+              <AnimatePresence mode="wait" initial={false}>
+                {toggleForm ? (
+                  <motion.div
+                    key="form"
+                    className="content left"
+                    initial={{ opacity: 0, x: "-100%" }}
+                    animate={{ opacity: 1, x: "0%" }}
+                    exit={{
+                      opacity: 0,
+                      transition: { duration: 0 },
+                    }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
                     <ContactForm setToggleForm={setToggleForm} />
-                  ) : (
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="text"
+                    className="content right"
+                    initial={{ opacity: 0, x: "-100%" }}
+                    animate={{ opacity: 1, x: "0%" }}
+                    exit={{ opacity: 0, transition: { duration: 0 } }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
                     <div className="d-flex flex-column">
-                      <h1 className={`${!isSmallDesktop ? "fs-1" : "fs-3 "}`}>
+                      <h1
+                        className={`mt-5 ${!isSmallScreen ? "fs-1" : "fs-3 "}`}
+                      >
                         Contact Details:
                       </h1>
-                      <p className={`${!isSmallDesktop ? "fs-4" : "fs-6"}`}>
-                        Email: <br />
-                        Contact Number:
+                      <p className={`${!isSmallScreen ? "fs-5" : "fs-6"}`}>
+                        Email: janice.copeland@simply4group.co.uk <br />
+                        Contact Number: 07305811142
                       </p>
 
                       <h1
-                        className={` ${!isSmallDesktop ? "fs-1 pt-6" : "fs-3"}`}
+                        className={` ${!isSmallScreen ? "fs-1 pt-6" : "fs-3"}`}
                       >
                         Opening Hours
                       </h1>
-                      <p className={`${!isSmallDesktop ? "fs-5" : "fs-6"}`}>
+                      <p className={`${!isSmallScreen ? "fs-5" : "fs-6"}`}>
                         We are open Monday to Friday 7.30am to 6.30pm <br />
                         51 weeks per year excluding Bank Holidays and INSET days
                         for children aged 3 months to 5 years.
                       </p>
                       <Button
-                        className="w-50 align-self-center mt-auto mb-auto"
+                        className="w-50 align-self-center mb-5"
                         variant="secondary"
                         onClick={() => setToggleForm(true)}
                       >
                         Contact Us
                       </Button>
                     </div>
-                  )}
-                </div>
-              </CSSTransition>
-            </TransitionGroup>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </Container>
           {isLoaded ? (
             <GoogleMap
               mapContainerClassName={cn("w-100", {
-                "rounded-top-5": isSmallDesktop,
-                "rounded-end-5": !isSmallDesktop,
-                "vh-60": toggleForm,
-                "vh-55": !toggleForm,
-                "vh-45": isSmallDesktop,
+                "rounded-top-5": isSmallScreen,
+                "rounded-end-5": !isSmallScreen,
               })}
               center={center}
               zoom={15}
+              mapContainerStyle={{ height: contentHeight }}
             >
               <MarkerF position={center} />
             </GoogleMap>

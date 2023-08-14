@@ -1,12 +1,15 @@
 import { Image } from "react-bootstrap";
-import { CaretRightFill, CaretLeftFill } from "react-bootstrap-icons";
+import { CaretRightFill, CaretLeftFill, XCircle } from "react-bootstrap-icons";
+
 import ReactPlayer from "react-player";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./MediaCarousel.css";
+import cn from "classnames";
+
 import { Swiper as SwiperClass } from "swiper/types";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Pagination } from "swiper/modules";
 
 type MediaCarouselProps = {
@@ -14,6 +17,7 @@ type MediaCarouselProps = {
   imageClassNames?: string;
   carouselClassNames?: string;
   itemWidth: number;
+  id: number;
 };
 
 const MediaCarousel = ({
@@ -21,9 +25,10 @@ const MediaCarousel = ({
   imageClassNames,
   carouselClassNames,
   itemWidth,
+  id,
 }: MediaCarouselProps): JSX.Element => {
   const [swiperRef, setSwiperRef] = useState<SwiperClass>();
-
+  const [isFullscreen, setIsFullscreen] = useState<Boolean>(false);
   const handlePrevious = useCallback(() => {
     swiperRef?.slidePrev();
   }, [swiperRef]);
@@ -32,13 +37,70 @@ const MediaCarousel = ({
     swiperRef?.slideNext();
   }, [swiperRef]);
 
+  const toggleFullscreen = () => {
+    if (!isFullscreen) {
+      const carouselContainer = document.querySelector(
+        `.carousel-container-${id}`
+      ) as HTMLElement & {
+        mozRequestFullScreen(): Promise<void>;
+        webkitRequestFullscreen(): Promise<void>;
+        msRequestFullscreen(): Promise<void>;
+      };
+      if (carouselContainer) {
+        if (carouselContainer.requestFullscreen) {
+          carouselContainer.requestFullscreen();
+        } else if (carouselContainer.mozRequestFullScreen) {
+          carouselContainer.mozRequestFullScreen(); // Firefox
+        } else if (carouselContainer.webkitRequestFullscreen) {
+          carouselContainer.webkitRequestFullscreen(); // Safari
+        } else if (carouselContainer.msRequestFullscreen) {
+          carouselContainer.msRequestFullscreen(); // IE/Edge
+        }
+      }
+    } else {
+      const docWithBrowsersExitFunctions = document as Document & {
+        mozCancelFullScreen(): Promise<void>;
+        webkitExitFullscreen(): Promise<void>;
+        msExitFullscreen(): Promise<void>;
+      };
+      if (docWithBrowsersExitFunctions.exitFullscreen) {
+        docWithBrowsersExitFunctions.exitFullscreen();
+      } else if (docWithBrowsersExitFunctions.mozCancelFullScreen) {
+        docWithBrowsersExitFunctions.mozCancelFullScreen();
+      } else if (docWithBrowsersExitFunctions.webkitExitFullscreen) {
+        docWithBrowsersExitFunctions.webkitExitFullscreen();
+      }
+    }
+    setIsFullscreen(!isFullscreen);
+  };
+
+  useEffect(() => {
+    const fullscreenChangeHandler = () => {
+      setIsFullscreen(document.fullscreenElement !== null);
+    };
+    document.addEventListener("fullscreenchange", fullscreenChangeHandler);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", fullscreenChangeHandler);
+    };
+  }, []);
   return (
-    <>
-      <div className="d-flex flex-row">
-        <div className="align-self-center">
+    <div
+      className={cn(`carousel-container-${id}`, {
+        fullscreen: isFullscreen,
+      })}
+    >
+      <div
+        // className={cn("d-flex flex-row h-auto", {
+        //   "align-items-center": isFullscreen,
+        // })}
+        className="d-flex flex-row"
+      >
+        <div className={cn("align-self-center", { "text-base": isFullscreen })}>
           <CaretLeftFill onClick={handlePrevious} size={"100%"} />
         </div>
         <Swiper
+          className="flex-grow-1"
           pagination={true}
           onSwiper={setSwiperRef}
           modules={[Pagination]}
@@ -61,7 +123,11 @@ const MediaCarousel = ({
                   </div>
                 ) : (
                   <Image
-                    className={`d-block w-100 h-100 ${imageClassNames}`}
+                    className={cn(`d-block ${imageClassNames}`, {
+                      "w-100 h-100": !isFullscreen,
+                      // "w-80 h-60": isFullscreen,
+                    })}
+                    onClick={toggleFullscreen}
                     src={item}
                   />
                 )}
@@ -69,11 +135,14 @@ const MediaCarousel = ({
             );
           })}
         </Swiper>
-        <div className="align-self-center">
+        <div className={cn("align-self-center", { "text-base": isFullscreen })}>
           <CaretRightFill onClick={handleNext} size={"100%"} />
         </div>
+        {isFullscreen && (
+          <XCircle className="fullscreen-button" onClick={toggleFullscreen} />
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

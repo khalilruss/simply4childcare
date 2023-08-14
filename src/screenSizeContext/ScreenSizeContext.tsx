@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
 export interface ScreenSizeContextType {
+  isXXs: boolean;
   isXs: boolean;
   isSm: boolean;
   isMd: boolean;

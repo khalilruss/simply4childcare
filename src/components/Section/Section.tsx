@@ -56,7 +56,8 @@ const Section = ({
   marginBottom,
   contentWidth,
 }: SectionProps): JSX.Element => {
-  const { isXs, isSm, isMd, isLg, isXl, isXXl, isTablet } = useScreenSize();
+  const { isXXs, isXs, isSm, isMd, isLg, isXl, isXXl, isTablet } =
+    useScreenSize();
   return (
     <Container
       fluid
@@ -98,7 +99,7 @@ const Section = ({
             "w-50": isLg,
             "w-80": isMd,
             "w-90": isSm,
-            "w-100": isXs,
+            "w-100": isXs || isXXs,
           })}
         >
           <div
@@ -122,7 +123,7 @@ const Section = ({
             "w-45": isLg,
             "w-60": isMd,
             "w-70": isSm,
-            "w-100": isXs,
+            "w-100": isXs || isXXs,
             "mb-4": isTablet && imageStacked,
           })}
           roundedCircle={!imageStacked}

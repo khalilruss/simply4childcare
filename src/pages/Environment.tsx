@@ -16,7 +16,7 @@ const garden = require.context("../assets/Environment/Garden", true);
 const gardenMedia = garden.keys().map((media) => garden(media));
 
 const Environment = (): JSX.Element => {
-  const { isXs, isSm, isMd, isLg, isTablet } = useScreenSize();
+  const { isXXs, isXs, isSm, isMd, isLg, isTablet } = useScreenSize();
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
@@ -52,14 +52,14 @@ const Environment = (): JSX.Element => {
         <div
           className={cn("align-self-center", {
             // || isSm || isMd
-            "vw-100": isXs,
+            "vw-100": isXs || isXXs,
             "w-90": isSm,
             "w-80": isMd || isLg,
             "mw-45": !isTablet,
           })}
           // className="mw-40 h-100 align-self-center"
         >
-          <MediaCarousel itemWidth={650} media={room1Media} />
+          <MediaCarousel id={1} itemWidth={650} media={room1Media} />
         </div>
       </Container>
       <Container
@@ -76,14 +76,14 @@ const Environment = (): JSX.Element => {
         >
           <div
             className={cn("align-self-center", {
-              "vw-100": isXs,
+              "vw-100": isXs || isXXs,
               "w-90": isSm,
               "w-80": isMd || isLg,
               "mw-45": !isTablet,
             })}
             // className="mw-40 h-85 align-self-center"
           >
-            <MediaCarousel itemWidth={650} media={room2Media} />
+            <MediaCarousel id={2} itemWidth={650} media={room2Media} />
           </div>
           <div
             className={cn("align-self-center", {
@@ -98,7 +98,7 @@ const Environment = (): JSX.Element => {
               and resources to support their development with a large variety of
               exciting activities based on the children’s interests. The room
               has its own toilet area to support your child to begin to potty
-              train.{" "}
+              train.
             </p>
           </div>
         </Container>
@@ -129,7 +129,7 @@ const Environment = (): JSX.Element => {
         </div>
         <div
           className={cn("align-self-center", {
-            "vw-100": isXs,
+            "vw-100": isXs || isXXs,
             "w-90": isSm,
             "w-80": isMd || isLg,
             "mw-45": !isTablet,
@@ -137,6 +137,7 @@ const Environment = (): JSX.Element => {
           // className="mw-40 h-100 align-self-center"
         >
           <MediaCarousel
+            id={3}
             itemWidth={650}
             imageClassNames="img"
             media={gardenMedia}

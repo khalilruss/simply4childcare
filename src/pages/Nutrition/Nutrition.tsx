@@ -5,11 +5,14 @@ import healthy from "../../assets/Nutrition/stock-photo-child-little-girl-eats-v
 import MediaCarousel from "../../components/MediaCarousel/MediaCarousel";
 import ImageOverlay from "../../components/ImageTextOverlay/ImageTextOverlay";
 import Section from "../../components/Section/Section";
+import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
+import cn from "classnames";
 
 const menuPictures = require.context("../../assets/Nutrition/Menus", true);
 const menuMedia = menuPictures.keys().map((menu) => menuPictures(menu));
 
 const Nutrition = (): JSX.Element => {
+  const { isXXs, isXs, isSm, isMd, isLg, isXl, isXXl } = useScreenSize();
   return (
     <>
       <ImageOverlay
@@ -23,8 +26,15 @@ const Nutrition = (): JSX.Element => {
       <Container className="d-flex flex-column align-items-center justify-content-evenly  text-black curved-section-right">
         <Container className="d-flex flex-column ">
           <h1 className="align-self-center">Sample Menus:</h1>
-          <div className="w-80 align-self-center mb-2">
-            <MediaCarousel itemWidth={1000} media={menuMedia} />
+          <div
+            className={cn("align-self-center mb-2", {
+              "vw-100": isXs || isXXs,
+              "w-90": isSm,
+              "w-80": isMd || isLg || isXl || isXXl,
+            })}
+            // className="w-80 align-self-center mb-2"
+          >
+            <MediaCarousel id={1} itemWidth={1000} media={menuMedia} />
           </div>
           <div>
             <p className="fw-bold fs-4 bg-white w-fit-content">

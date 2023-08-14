@@ -16,8 +16,10 @@ const Footer = (): JSX.Element => {
           </Col>
           <Col md={6}>
             <h5>Contact Us</h5>
-            <p>Email: janice.copeland@simply4group.co.uk</p>
-            <p>Mobile: 07305811142</p>
+            <p>
+              Email: janice.copeland@simply4group.co.uk <br />
+              Mobile: 07305811142
+            </p>
           </Col>
         </Row>
       </Container>

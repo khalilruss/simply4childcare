@@ -7,17 +7,19 @@ interface ScreenSizeProviderProps {
 }
 
 const breakpoints = {
-  xs: "(max-width: 576px)",
-  sm: "(min-width: 576px) and (max-width: 768px)",
-  md: "(min-width: 768px) and (max-width: 992px)",
-  lg: "(min-width: 992px) and (max-width: 1200px)",
-  xl: "(min-width: 1200px) and (max-width: 1400px)",
+  xxs: "(max-width: 475px)",
+  xs: "(min-width: 476px) and (max-width: 576px)",
+  sm: "(min-width: 577px) and (max-width: 768px)",
+  md: "(min-width: 769px) and (max-width: 992px)",
+  lg: "(min-width: 993px) and (max-width: 1200px)",
+  xl: "(min-width: 1201px) and (max-width: 1400px)",
   xxl: "(min-width: 1401px)",
 };
 
 const ScreenSizeProvider: React.FC<ScreenSizeProviderProps> = ({
   children,
 }) => {
+  const isXXs = useMediaQuery({ query: breakpoints.xxs });
   const isXs = useMediaQuery({ query: breakpoints.xs });
   const isSm = useMediaQuery({ query: breakpoints.sm });
   const isMd = useMediaQuery({ query: breakpoints.md });
@@ -30,6 +32,7 @@ const ScreenSizeProvider: React.FC<ScreenSizeProviderProps> = ({
   const isSmallScreen = useMediaQuery({ query: "(max-width: 1200px)" });
 
   const contextValues: ScreenSizeContextType = {
+    isXXs,
     isXs,
     isSm,
     isMd,

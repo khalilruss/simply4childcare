@@ -13,7 +13,7 @@ const ContactForm = ({
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
 
   return (
-    <Form className={`${className} pt-4 d-flex flex-column`}>
+    <Form className={`${className} mt-4 mb-4 d-flex flex-column`}>
       <h1 className={`${!isTabletOrMobile ? "fs-2" : "fs-4"}`}>Contact Us</h1>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label className={`${!isTabletOrMobile ? "fs-5" : "fs-6"}`}>

@@ -1,24 +1,23 @@
 import { Nav, Navbar, NavLink, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "../assets/Lorenes-House2.svg";
+import cn from "classnames";
+
 import "./Navbar.css";
+import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
 
 const Navigationbar = () => {
+  const { isXXs, isXs, isSm } = useScreenSize();
+
   return (
-    <Navbar
-      // style={{
-      //   backgroundImage: `url(${bg})`,
-      //   backgroundRepeat: "no-repeat",
-      //   backgroundPosition: "center",
-      //   backgroundSize: "cover",
-      // }}
-      collapseOnSelect
-      expand="md"
-      bg="white"
-      sticky="top"
-    >
-      <Container className="d-flex w-50 justify-content-center">
-        <Navbar.Brand href="/" className="bg-white">
+    <Navbar collapseOnSelect expand="md" bg="white" sticky="top">
+      <Container
+        className={cn("d-flex ", {
+          "w-50 justify-content-center": !isSm && !isXs && !isXXs,
+          "justify-content-between": isSm || isXs || isXXs,
+        })}
+      >
+        <Navbar.Brand href="/lorenes-house" className="bg-white">
           <img
             src={logo}
             height="120rem"
@@ -26,12 +25,12 @@ const Navigationbar = () => {
             alt="React Bootstrap logo"
           />
         </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="navbarScroll"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+        />
       </Container>
-      <Navbar.Toggle
-        aria-controls="navbarScroll"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarScroll"
-      />
       <Navbar.Collapse className="justify-content-evenly " id="navbarScroll">
         <Nav>
           <NavLink
@@ -46,16 +45,25 @@ const Navigationbar = () => {
             className="fs-3 bg-white"
             title={<span className="fs-3 text-dark-pink">About</span>}
           >
-            <NavDropdown.Item eventKey="2" href="/about/about-us">
+            <NavDropdown.Item eventKey="2" href="/lorenes-house/about/about-us">
               About Us
             </NavDropdown.Item>
-            <NavDropdown.Item eventKey="3" href="/about/our-ethos">
+            <NavDropdown.Item
+              eventKey="3"
+              href="/lorenes-house/about/our-ethos"
+            >
               Our Ethos
             </NavDropdown.Item>
-            <NavDropdown.Item eventKey="4" href="/about/our-approach">
+            <NavDropdown.Item
+              eventKey="4"
+              href="/lorenes-house/about/our-approach"
+            >
               Our Approach
             </NavDropdown.Item>
-            <NavDropdown.Item eventKey="5" href="/about/our-environment">
+            <NavDropdown.Item
+              eventKey="5"
+              href="/lorenes-house/about/our-environment"
+            >
               Our Environment
             </NavDropdown.Item>
           </NavDropdown>
@@ -64,20 +72,22 @@ const Navigationbar = () => {
             title={
               <span className="fs-3 text-turquoise">Parent Information</span>
             }
-            id="basic-nav-dropdown"
           >
             <NavDropdown.Item
               eventKey="6"
-              href="/parent-information/parents-as-partners"
+              href="/lorenes-house/parent-information/parents-as-partners"
             >
               Parents as Partners
             </NavDropdown.Item>
-            <NavDropdown.Item eventKey="7" href="/parent-information/nutrition">
+            <NavDropdown.Item
+              eventKey="7"
+              href="/lorenes-house/parent-information/nutrition"
+            >
               Nutrition
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="8"
-              href="/parent-information/fees-and-sessions"
+              href="/lorenes-house/parent-information/fees-and-sessions"
             >
               Fees & Sessions
             </NavDropdown.Item>

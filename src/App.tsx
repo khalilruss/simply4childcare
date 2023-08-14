@@ -1,9 +1,6 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-// import { useMediaQuery } from "react-responsive";
-// import { useState, useEffect } from "react";
-// import { useLocation } from "react-router-dom";
 import ScreenSizeProvider from "./screenSizeContext/ScreenSizeProvider";
 
 import Navigationbar from "./components/Navbar";
