@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "PUBLIC_URL=/lorenes-house react-scripts start",
-    "build": "PUBLIC_URL=/lorenes-house react-scripts build",
+    "build": "PUBLIC_URL=https://main--timely-babka-f60986.netlify.app/lorenes-house react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
