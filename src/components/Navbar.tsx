@@ -17,7 +17,7 @@ const Navigationbar = () => {
           "justify-content-between": isSm || isXs || isXXs,
         })}
       >
-        <Navbar.Brand href="/lorenes-house" className="bg-white">
+        <Navbar.Brand as={Link} to="/" className="bg-white">
           <img
             src={logo}
             height="120rem"
@@ -45,24 +45,19 @@ const Navigationbar = () => {
             className="fs-3 bg-white"
             title={<span className="fs-3 text-dark-pink">About</span>}
           >
-            <NavDropdown.Item eventKey="2" href="/lorenes-house/about/about-us">
+            <NavDropdown.Item eventKey="2" as={Link} to="/about/about-us">
               About Us
             </NavDropdown.Item>
-            <NavDropdown.Item
-              eventKey="3"
-              href="/lorenes-house/about/our-ethos"
-            >
+            <NavDropdown.Item eventKey="3" as={Link} to="/about/our-ethos">
               Our Ethos
             </NavDropdown.Item>
-            <NavDropdown.Item
-              eventKey="4"
-              href="/lorenes-house/about/our-approach"
-            >
+            <NavDropdown.Item eventKey="4" as={Link} to="/about/our-approach">
               Our Approach
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="5"
-              href="/lorenes-house/about/our-environment"
+              as={Link}
+              to="/about/our-environment"
             >
               Our Environment
             </NavDropdown.Item>
@@ -75,19 +70,22 @@ const Navigationbar = () => {
           >
             <NavDropdown.Item
               eventKey="6"
-              href="/lorenes-house/parent-information/parents-as-partners"
+              as={Link}
+              to="/parent-information/parents-as-partners"
             >
               Parents as Partners
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="7"
-              href="/lorenes-house/parent-information/nutrition"
+              as={Link}
+              to="/parent-information/nutrition"
             >
               Nutrition
             </NavDropdown.Item>
             <NavDropdown.Item
               eventKey="8"
-              href="/lorenes-house/parent-information/fees-and-sessions"
+              as={Link}
+              to="/parent-information/fees-and-sessions"
             >
               Fees & Sessions
             </NavDropdown.Item>

@@ -7,13 +7,13 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import "./theme.scss";
 import ScrollToTop from "./components/helpers/ScrollToTop";
-
+const basename = document.querySelector("base")?.getAttribute("href") ?? "/";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Router basename="lorenes-house">
+    <Router basename={basename}>
       <ScrollToTop />
       <App />
     </Router>
