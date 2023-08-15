@@ -4,13 +4,11 @@ on:
   push:
     branches:
       - main
-env:
-  GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY}}
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY}}
+      REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY}}
     steps:
       - name: Checkout Main Branch
         uses: actions/checkout@v3
