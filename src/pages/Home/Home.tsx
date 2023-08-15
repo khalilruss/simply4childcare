@@ -17,7 +17,6 @@ import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
 import Section from "../../components/Section/Section";
-// ***REMOVED***
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
