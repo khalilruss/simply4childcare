@@ -40,3 +40,7 @@ background-color: white;
   height: auto;
   width: 5%;
 }
+
+.swiper-slide-prev, .swiper-slide-next{
+opacity: 0.3;
+}

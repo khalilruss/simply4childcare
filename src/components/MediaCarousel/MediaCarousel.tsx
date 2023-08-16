@@ -11,6 +11,7 @@ import { Swiper as SwiperClass } from "swiper/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState, useCallback, useEffect } from "react";
 import { Pagination } from "swiper/modules";
+import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
 
 type MediaCarouselProps = {
   media: string[];
@@ -84,30 +85,36 @@ const MediaCarousel = ({
       document.removeEventListener("fullscreenchange", fullscreenChangeHandler);
     };
   }, []);
+
+  const { isXXs, isXs, isSm, isMd, isLg } = useScreenSize();
+
   return (
     <div
       className={cn(`carousel-container-${id}`, {
         fullscreen: isFullscreen,
       })}
     >
-      <div
-        // className={cn("d-flex flex-row h-auto", {
-        //   "align-items-center": isFullscreen,
-        // })}
-        className="d-flex flex-row"
-      >
-        <div className={cn("align-self-center", { "text-base": isFullscreen })}>
-          <CaretLeftFill onClick={handlePrevious} size={"100%"} />
-        </div>
+      <div className="d-flex flex-row">
+        {!(isXXs || isXs || isSm || isMd || isLg) ? (
+          <div
+            className={cn("align-self-center", { "text-base": isFullscreen })}
+          >
+            <CaretLeftFill onClick={handlePrevious} size={"100%"} />
+          </div>
+        ) : (
+          <></>
+        )}
         <Swiper
-          className="flex-grow-1"
+          slidesPerView={!(isXXs || isXs || isSm || isMd || isLg) ? 1 : 1.1}
+          centeredSlides={true}
+          spaceBetween={!(isXXs || isXs || isSm || isMd || isLg) ? 0 : 5}
           pagination={true}
           onSwiper={setSwiperRef}
           modules={[Pagination]}
         >
-          {media.map((item: string) => {
+          {media.map((item: string, index: number) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={index} className={``}>
                 {item.includes(".mp4") ? (
                   <div className="carousel-video-wrapper">
                     <ReactPlayer
@@ -125,7 +132,7 @@ const MediaCarousel = ({
                   <Image
                     className={cn(`d-block ${imageClassNames}`, {
                       "w-100 h-100": !isFullscreen,
-                      // "w-80 h-60": isFullscreen,
+                      "w-80 h-60": isFullscreen,
                     })}
                     onClick={toggleFullscreen}
                     src={item}
@@ -135,9 +142,16 @@ const MediaCarousel = ({
             );
           })}
         </Swiper>
-        <div className={cn("align-self-center", { "text-base": isFullscreen })}>
-          <CaretRightFill onClick={handleNext} size={"100%"} />
-        </div>
+        {!(isXXs || isXs || isSm || isMd || isLg) ? (
+          <div
+            className={cn("align-self-center", { "text-base": isFullscreen })}
+          >
+            <CaretRightFill onClick={handleNext} size={"100%"} />
+          </div>
+        ) : (
+          <></>
+        )}
+
         {isFullscreen && (
           <XCircle className="fullscreen-button" onClick={toggleFullscreen} />
         )}
