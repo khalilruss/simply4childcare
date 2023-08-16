@@ -34,7 +34,7 @@ const Nutrition = (): JSX.Element => {
             })}
             // className="w-80 align-self-center mb-2"
           >
-            <MediaCarousel id={1} itemWidth={1000} media={menuMedia} />
+            <MediaCarousel media={menuMedia} />
           </div>
           <div>
             <p className="fw-bold fs-4 bg-white w-fit-content">

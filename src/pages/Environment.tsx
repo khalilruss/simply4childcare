@@ -59,7 +59,7 @@ const Environment = (): JSX.Element => {
           })}
           // className="mw-40 h-100 align-self-center"
         >
-          <MediaCarousel id={1} itemWidth={650} media={room1Media} />
+          <MediaCarousel media={room1Media} />
         </div>
       </Container>
       <Container
@@ -83,7 +83,7 @@ const Environment = (): JSX.Element => {
             })}
             // className="mw-40 h-85 align-self-center"
           >
-            <MediaCarousel id={2} itemWidth={650} media={room2Media} />
+            <MediaCarousel media={room2Media} />
           </div>
           <div
             className={cn("align-self-center", {
@@ -136,12 +136,7 @@ const Environment = (): JSX.Element => {
           })}
           // className="mw-40 h-100 align-self-center"
         >
-          <MediaCarousel
-            id={3}
-            itemWidth={650}
-            imageClassNames="img"
-            media={gardenMedia}
-          />
+          <MediaCarousel imageClassNames="img" media={gardenMedia} />
         </div>
       </Container>
     </>
