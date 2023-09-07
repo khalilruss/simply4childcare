@@ -35,27 +35,39 @@ const AboutUs = (): JSX.Element => {
           </motion.div>
         }
       />
-      <Section
-        content={
-          <p className="fs-3">
-            Our rooms and resources have the Early Years Foundation Stage (EYFS)
-            completely covered. Children can relax with a book; get busy with
-            construction toys or role-playing props; get creative with musical
-            instruments, art and craft materials or learn in our maths areas and
-            explore the garden. Our range of resources embrace the needs of a
-            wide variety of abilities and cultures, giving our children the
-            chance to learn about the different backgrounds of their new
-            friends.
-          </p>
-        }
-        imageSrc={childPlaying}
-        imagePosition="right"
-        imageWidth="w-35"
-        imageStacked={true}
-        stackDirection="left"
-        stackBackgroundColor="bg-yellow"
-        background={false}
-      />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+        viewport={{ once: false }}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
+        }}
+      >
+        <Section
+          content={
+            <p className="fs-3">
+              Our rooms and resources have the Early Years Foundation Stage
+              (EYFS) completely covered. Children can relax with a book; get
+              busy with construction toys or role-playing props; get creative
+              with musical instruments, art and craft materials or learn in our
+              maths areas and explore the garden. Our range of resources embrace
+              the needs of a wide variety of abilities and cultures, giving our
+              children the chance to learn about the different backgrounds of
+              their new friends.
+            </p>
+          }
+          imageSrc={childPlaying}
+          imagePosition="right"
+          imageWidth="w-35"
+          imageStacked={true}
+          stackDirection="left"
+          stackBackgroundColor="bg-yellow"
+          background={false}
+        />
+      </motion.div>
+
       <Section
         content={
           <motion.div
