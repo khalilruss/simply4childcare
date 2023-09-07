@@ -5,6 +5,7 @@ import cn from "classnames";
 
 import "./Navbar.css";
 import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
+import { MotionLink, MotionNavDropdown } from "../components/MotionComponents";
 
 const Navigationbar = () => {
   const { isXXs, isXs, isSm } = useScreenSize();
@@ -13,14 +14,24 @@ const Navigationbar = () => {
     <Navbar collapseOnSelect expand="md" bg="white" sticky="top">
       <Container
         className={cn("d-flex ", {
-          "w-50 justify-content-center": !isSm && !isXs && !isXXs,
+          "w-50 justify-content-center": !(isSm || isXs || isXXs),
           "justify-content-between": isSm || isXs || isXXs,
         })}
       >
-        <Navbar.Brand as={Link} to="/" className="bg-white">
+        <Navbar.Brand
+          as={MotionLink}
+          to="/"
+          className="bg-white"
+          whileHover={{
+            scale: 1.05,
+            transition: { duration: 0.2 },
+          }}
+          whileTap={{ scale: 1 }}
+        >
           <img
             src={logo}
             height="120rem"
+            // height={logoHeight.get()}
             className="d-inline-block align-top"
             alt="React Bootstrap logo"
           />
@@ -36,14 +47,24 @@ const Navigationbar = () => {
           <NavLink
             className="fs-3 text-green bg-white"
             eventKey="1"
-            as={Link}
+            as={MotionLink}
             to="/"
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.2 },
+            }}
+            whileTap={{ scale: 1 }}
           >
             Home
           </NavLink>
-          <NavDropdown
+          <MotionNavDropdown
             className="fs-3 bg-white"
             title={<span className="fs-3 text-dark-pink">About</span>}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.2 },
+            }}
+            whileTap={{ scale: 1 }}
           >
             <NavDropdown.Item eventKey="2" as={Link} to="/about/about-us">
               About Us
@@ -61,12 +82,17 @@ const Navigationbar = () => {
             >
               Our Environment
             </NavDropdown.Item>
-          </NavDropdown>
-          <NavDropdown
+          </MotionNavDropdown>
+          <MotionNavDropdown
             className="fs-3 bg-white"
             title={
               <span className="fs-3 text-turquoise">Parent Information</span>
             }
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.2 },
+            }}
+            whileTap={{ scale: 1 }}
           >
             <NavDropdown.Item
               eventKey="6"
@@ -89,7 +115,7 @@ const Navigationbar = () => {
             >
               Fees & Sessions
             </NavDropdown.Item>
-          </NavDropdown>
+          </MotionNavDropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

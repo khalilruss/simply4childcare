@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./ImageButton.css";
-type ImageButtonProps = {
+export type ImageButtonProps = {
   imageSrc: string;
   buttonText: string;
   backgroundColor: `bg-${string}`;

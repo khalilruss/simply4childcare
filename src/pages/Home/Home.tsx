@@ -11,30 +11,48 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, MouseEvent, useRef, useEffect } from "react";
 import { Link } from "react-scroll";
 import cn from "classnames";
-import ImageButton from "../../components/ImageButton/ImageButton";
+import ImageButton, {
+  ImageButtonProps,
+} from "../../components/ImageButton/ImageButton";
 import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
 import Section from "../../components/Section/Section";
+import {
+  MotionCard,
+  MotionContainer,
+  MotionImage,
+} from "../../components/MotionComponents";
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
   });
+  const center = {
+    lat: 51.45433,
+    lng: -0.12201,
+  };
+
+  const [toggleForm, setToggleForm] = useState<boolean>(false);
 
   const contentRef = useRef<HTMLInputElement>(null);
-  const [toggleForm, setToggleForm] = useState<boolean>(false);
   const [contentHeight, setContentHeight] = useState<number>(0);
   useEffect(() => {
-    const delay = setTimeout(() => {
-      if (contentRef.current) {
-        setContentHeight(contentRef.current.scrollHeight);
-      }
-    }, 10); // Adjust the delay as needed
+    if (contentRef.current) {
+      const observer = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          setContentHeight(entry.target.scrollHeight);
+        }
+      });
 
-    return () => clearTimeout(delay);
-  }, [contentRef, toggleForm]);
+      observer.observe(contentRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, []);
 
   const {
     isXXs,
@@ -49,38 +67,92 @@ const Home = (): JSX.Element => {
     isSmallScreen,
   } = useScreenSize();
 
-  const center = {
-    lat: 51.45433,
-    lng: -0.12201,
-  };
-
   const propagateClick = (event: MouseEvent<HTMLElement>) => {
     (
       (event.target as HTMLButtonElement).children[0] as HTMLLinkElement
     ).click();
   };
 
+  const imageButtons: ImageButtonProps[] = [
+    {
+      imageSrc: smileyHands,
+      backgroundColor: "bg-light-pink",
+      buttonText: "About Us",
+    },
+    {
+      imageSrc: handsTogether,
+      backgroundColor: "bg-yellow",
+      buttonText: "Our Ethos",
+    },
+    {
+      imageSrc: woodenBlocks,
+      backgroundColor: "bg-light-green",
+      buttonText: "Our Approach",
+    },
+    {
+      imageSrc: playground,
+      backgroundColor: "bg-turquoise",
+      buttonText: "Our Environment",
+    },
+  ];
+  const renderImageButtons = () => {
+    return imageButtons.map((item, index) => {
+      return (
+        <motion.div
+          key={index}
+          variants={{
+            hidden: {
+              opacity: 0,
+              x: -20,
+            },
+            visible: {
+              opacity: 1,
+              x: 0,
+              transition: {
+                ease: "easeInOut",
+              },
+            },
+          }}
+        >
+          <ImageButton
+            imageSrc={item.imageSrc}
+            backgroundColor={item.backgroundColor}
+            buttonText={item.buttonText}
+          />
+        </motion.div>
+      );
+    });
+  };
+
   return (
     <div className="d-flex flex-column align-items-center">
       <div
         className={cn("home-stack mt-5", {
-          "minw-80 mw-80 mb-6": isXXl || isXl,
+          "minw-80 mw-80": isXXl || isXl,
           "mw-90 minw-90 ": isLg || isMd,
           "vw-100 ": isSm || isXs || isXXs,
-          "mb-6": isXXl || isXl || isLg,
+          "mb-8": isXs,
           "mb-9": isSm || isMd,
-          "mb-10": isXs || isXXs,
+          "mb-10": isXXs,
         })}
       >
-        <Image
+        <MotionImage
           rounded
           className={cn({
             "home-stack-bottom-item": isXXl || isXl || isLg,
             "home-stack-bottom-item-mobile": isMd || isSm || isXs || isXXs,
           })}
           src={childDrawing}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+          viewport={{ once: false }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 },
+          }}
         />
-        <Card
+        <MotionCard
           className={cn(
             "d-flex flex-column bg-base justify-content-center align-items-center",
             {
@@ -90,18 +162,30 @@ const Home = (): JSX.Element => {
               "top-60 h-90": isXXs,
             }
           )}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+          viewport={{ once: false }}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 },
+          }}
         >
           <Card.Text className="text-light text-center">
-            <h1 className={`${!isMobile ? "fs-1" : "m-0"} fw-bolder`}>
+            <h1
+              className={`${
+                !(isSm || isXs || isXXs) ? "fs-1" : "m-0"
+              } fw-bolder`}
+            >
               Welcome to Lorene's House
             </h1>
-            <span className={`${!isMobile ? "fs-3" : "fs-6"}`}>
+            <span className={`${!(isSm || isXs || isXXs) ? "fs-3" : "fs-6"}`}>
               (Part of the Simply 4 Group)
             </span>
           </Card.Text>
           <Card.Text
             className={`${
-              !isMobile ? "fs-5 mt-2 " : "fs-6"
+              !(isSm || isXs || isXXs) ? "fs-5 mt-2 " : "fs-6"
             } text-light text-center`}
           >
             Providing quality care for your little ones
@@ -120,13 +204,12 @@ const Home = (): JSX.Element => {
               type="submit"
               to={"contact-form"}
               smooth={true}
-              // offset={-40}
               onClick={() => setToggleForm(true)}
             >
               Enquire Now!
             </Link>
           </Button>
-        </Card>
+        </MotionCard>
       </div>
       <Section
         content={
@@ -161,35 +244,31 @@ const Home = (): JSX.Element => {
           "mt-6": isTablet && !isMobile,
         })}
       >
-        <h1 className="bg-white w-auto align-self-center">Find Out More</h1>
-        <Container
+        <h1 className="bg-white w-auto align-self-center display-5 mt-3 fw-normal">
+          Find Out More
+        </h1>
+        <MotionContainer
+          variants={{
+            visible: {
+              transition: {
+                delay: 1,
+                staggerChildren: 0.3,
+              },
+            },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false }}
           fluid
           className={"d-flex w-100 flex-wrap flex-row justify-content-evenly"}
         >
-          <ImageButton
-            imageSrc={smileyHands}
-            backgroundColor="bg-light-pink"
-            buttonText="About Us"
-          />
-          <ImageButton
-            imageSrc={handsTogether}
-            backgroundColor="bg-yellow"
-            buttonText="Our Ethos"
-          />
-          <ImageButton
-            imageSrc={woodenBlocks}
-            backgroundColor="bg-light-green"
-            buttonText="Our Approach"
-          />
-          <ImageButton
-            imageSrc={playground}
-            backgroundColor="bg-turquoise"
-            buttonText="Our Environment"
-          />
-        </Container>
+          {renderImageButtons()}
+        </MotionContainer>
       </Container>
       <Container fluid className="d-flex flex-column mb-6">
-        <h1 className="bg-white w-auto align-self-center">Where to find us</h1>
+        <h1 className="bg-white w-auto align-self-center display-5 fw-normal">
+          Where to find us
+        </h1>
         <Container
           fluid
           className={cn("d-flex text-light align-self-center", {
@@ -200,19 +279,20 @@ const Home = (): JSX.Element => {
             "vw-70 ": isXl || isSm || isXs,
             "vw-55": isLg || isMd,
             "vw-95": isXXs,
-            // "vh-60": toggleForm && !(isXXl || isXl),
-            // "vh-55": !toggleForm && !(isLg || isMd || isSm || isXs || isXXs),
           })}
         >
           <Container
             fluid
-            ref={contentRef}
             className={cn("bg-light-pink d-flex flex-column w-100 h-auto", {
               "rounded-bottom-5": isSmallScreen,
               "rounded-start-5": !isSmallScreen,
             })}
           >
-            <div id="contact-form" className="overflow-hidden h-auto">
+            <div
+              id="contact-form"
+              ref={contentRef}
+              className="overflow-hidden h-auto"
+            >
               <AnimatePresence mode="wait" initial={false}>
                 {toggleForm ? (
                   <motion.div
