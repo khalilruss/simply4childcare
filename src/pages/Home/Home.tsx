@@ -213,7 +213,17 @@ const Home = (): JSX.Element => {
       </div>
       <Section
         content={
-          <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+            viewport={{ once: false }}
+            variants={{
+              visible: { opacity: 1, x: 0 },
+              hidden: { opacity: 0, x: 50 },
+            }}
+          >
+            {" "}
             <h1>Welcome!</h1>
             <p className="fs-4">
               At Simply 4 Childcare we believe that 'every child is unique and
@@ -228,7 +238,7 @@ const Home = (): JSX.Element => {
               grow in confidence. The individuality of each child is celebrated
               and valued.
             </p>
-          </>
+          </motion.div>
         }
         imageSrc={welcome}
         background={true}
