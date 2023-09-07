@@ -4,6 +4,7 @@ import quality from "../assets/Ethos/stock-vector-learning-day-care-center-icon-
 import relationship from "../assets/Ethos/stock-photo-we-are-great-team-laughing-indian-mommy-give-high-five-to-happy-kid-son-celebrate-building-of-high-1903206772.jpg";
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
+import { motion } from "framer-motion";
 
 const Ethos = (): JSX.Element => {
   return (
@@ -11,31 +12,67 @@ const Ethos = (): JSX.Element => {
       <ImageOverlay
         imageSrc={rainbow}
         content={
-          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+          <motion.h1
+            initial="initial"
+            whileInView="enlarge"
+            transition={{
+              delay: 0.2,
+              repeat: 1,
+              repeatType: "reverse",
+              duration: 0.5,
+            }}
+            viewport={{ once: false }}
+            variants={{
+              enlarge: { scale: 1.1 },
+              initial: { scale: 1 },
+            }}
+            className="fw-bolder display-1"
+          >
             Our Ethos
-          </h1>
+          </motion.h1>
         }
       />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+        viewport={{ once: false }}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 20 },
+        }}
+      >
+        <Section
+          content={
+            <p className="fs-3 bg-white">
+              Simply 4 Childcare pioneer a forward-thinking approach each and
+              every day. We will achieve this by making significant investments
+              in our learning and development by ensuring ongoing training and
+              professional development.
+            </p>
+          }
+          imageSrc={thinking}
+          imagePosition="right"
+          imageWidth="w-40"
+          imageStacked={true}
+          stackBackgroundColor="bg-dark-pink"
+          stackDirection="left"
+          background={false}
+        />
+      </motion.div>
       <Section
         content={
-          <p className="fs-3 bg-white">
-            Simply 4 Childcare pioneer a forward-thinking approach each and
-            every day. We will achieve this by making significant investments in
-            our learning and development by ensuring ongoing training and
-            professional development.
-          </p>
-        }
-        imageSrc={thinking}
-        imagePosition="right"
-        imageWidth="w-40"
-        imageStacked={true}
-        stackBackgroundColor="bg-dark-pink"
-        stackDirection="left"
-        background={false}
-      />
-      <Section
-        content={
-          <p className="fs-3">
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+            viewport={{ once: false }}
+            variants={{
+              visible: { opacity: 1, x: 0 },
+              hidden: { opacity: 0, x: 50 },
+            }}
+            className="fs-3"
+          >
             Simply 4 Childcare pride ourselves in paying close attention to what
             children tell us and show us. By doing this, we are able to gain
             important insights into the minds and to the development of each
@@ -43,7 +80,7 @@ const Ethos = (): JSX.Element => {
             emerge, enables us to provide a stimulating environment and plan
             appropriate activities in order to promote their learning and
             development.
-          </p>
+          </motion.p>
         }
         imageSrc={quality}
         imagePosition="left"
@@ -55,7 +92,17 @@ const Ethos = (): JSX.Element => {
       />
       <Section
         content={
-          <p className="fs-3 bg-white">
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+            viewport={{ once: false }}
+            variants={{
+              visible: { opacity: 1, x: 0 },
+              hidden: { opacity: 0, x: -50 },
+            }}
+            className="fs-3 bg-white"
+          >
             Simply 4 Childcare are dedicated to delivering high quality practice
             and leadership. We work hard each day to build excellent
             relationships with each other, the children and their parents. Our
@@ -63,7 +110,7 @@ const Ethos = (): JSX.Element => {
             always number one priority. Our home-from-home atmosphere enables
             the children to develop a sense of security and allows them to excel
             in all areas of their development.
-          </p>
+          </motion.p>
         }
         imageSrc={relationship}
         imagePosition="right"
