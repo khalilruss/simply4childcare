@@ -1,4 +1,4 @@
-import { Container, Image, Card, Button } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import childDrawing from "../../assets/Home/stock-photo-kids-drawing-on-floor-on-paper-preschool-boy-and-girl-play-on-floor-with-educational-toys-blocks-1009485583.jpg";
 import handsTogether from "../../assets/Home/stock-photo-diverse-classmates-holding-arms-on-campus-309237581.jpg";
 import woodenBlocks from "../../assets/Home/wooden-blocks.jpg";
