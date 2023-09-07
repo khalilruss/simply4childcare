@@ -4,6 +4,7 @@ import childPlaying from "../assets/About/stock-photo-young-boy-playing-with-edu
 import caringStaff from "../assets/About/stock-photo-female-infant-school-teacher-working-one-on-one-with-a-young-schoolboy-sitting-at-a-table-smiling-1283557810.jpg";
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
+import { motion } from "framer-motion";
 
 const AboutUs = (): JSX.Element => {
   return (
@@ -11,15 +12,27 @@ const AboutUs = (): JSX.Element => {
       <ImageOverlay
         imageSrc={children}
         content={
-          <>
-            <h1 className=" fw-bolder " style={{ fontSize: "5rem" }}>
-              About Us
-            </h1>
+          <motion.div
+            initial="initial"
+            whileInView="enlarge"
+            transition={{
+              delay: 0.2,
+              repeat: 1,
+              repeatType: "reverse",
+              duration: 0.5,
+            }}
+            viewport={{ once: false }}
+            variants={{
+              enlarge: { scale: 1.1 },
+              initial: { scale: 1 },
+            }}
+          >
+            <h1 className=" fw-bolder display-1">About Us</h1>
             <p className="fs-2 w-0">
               Every day at Simply 4 Childcare is packed with fun-filled learning
               and adventures.
             </p>
-          </>
+          </motion.div>
         }
       />
       <Section
@@ -45,7 +58,16 @@ const AboutUs = (): JSX.Element => {
       />
       <Section
         content={
-          <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+            viewport={{ once: false }}
+            variants={{
+              visible: { opacity: 1, x: 0 },
+              hidden: { opacity: 0, x: 50 },
+            }}
+          >
             <h2>Independent, happy children</h2>
             <p className="fs-3">
               We want our children to learn, play and explore indoors and out;
@@ -59,7 +81,7 @@ const AboutUs = (): JSX.Element => {
               grow. The amazing staff also plan special adult led activities to
               extend each child’s learning even further.
             </p>
-          </>
+          </motion.div>
         }
         imageSrc={happyChild}
         imagePosition="left"
@@ -73,7 +95,16 @@ const AboutUs = (): JSX.Element => {
       />
       <Section
         content={
-          <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
+            viewport={{ once: false }}
+            variants={{
+              visible: { opacity: 1, x: 0 },
+              hidden: { opacity: 0, x: -50 },
+            }}
+          >
             <h2>Professional, caring staff</h2>
             <p className="fs-3">
               Consistency is important for children, so our small team follow a
@@ -87,7 +118,7 @@ const AboutUs = (): JSX.Element => {
               We strive to act as excellent role models, ensuring that everyone
               has fun, but also learns to listen to and respect each other.
             </p>
-          </>
+          </motion.div>
         }
         imageSrc={caringStaff}
         imagePosition="right"
