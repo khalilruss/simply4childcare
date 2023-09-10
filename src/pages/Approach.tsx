@@ -13,30 +13,49 @@ import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import cn from "classnames";
 import Area from "../components/Area";
 import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
+import { motion } from "framer-motion";
+import {
+  MotionContainer,
+  titlePulse,
+  pulseVariants,
+  easeIn,
+  easeInYVariants,
+} from "../components/MotionComponents";
 
 const Approach = (): JSX.Element => {
   const { isXs, isSm, isMd, isLg, isXl, isXXl, isTablet } = useScreenSize();
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const swapArea = useMediaQuery({ query: "(max-width: 800px)" });
 
   return (
     <div>
       <ImageOverlay
         imageSrc={banner}
         content={
-          <>
-            <h1 className=" fw-bolder" style={{ fontSize: "5rem" }}>
-              Our Approach
-            </h1>
+          <motion.div
+            initial="initial"
+            whileInView="enlarge"
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
+          >
+            <h1 className=" fw-bolder display-1">Our Approach</h1>
             <p className="fs-2 w-0">
               At Simply 4 Childcare we combine the Early Years Foundation Stage
               framework with the ‘Curiosity Approach’ to plan for learning.
             </p>
-          </>
+          </motion.div>
         }
       />
-      <Container
+      <MotionContainer
         fluid
         className="d-flex flex-column p-0 overflow-hidden h-auto justify-content-center"
+        initial="hidden"
+        whileInView="visible"
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={50}
       >
         <Container fluid className="w-80 bg-white">
           <h1 className="text-center">
@@ -51,16 +70,29 @@ const Approach = (): JSX.Element => {
             splits learning into three Prime Areas and four Specific Areas.
           </p>
           <Tabs
-            defaultActiveKey="profile"
+            defaultActiveKey="prime"
             id="uncontrolled-tab-example"
             className="mb-3 w-fit-content bg-white"
           >
             <Tab
-              className="h-auto bg-white"
-              eventKey="home"
+              className="h-auto bg-white mb-3"
+              eventKey="prime"
               title="Prime Areas"
             >
-              <Container fluid>
+              <MotionContainer
+                variants={{
+                  visible: {
+                    transition: {
+                      delay: 1,
+                      staggerChildren: 0.3,
+                    },
+                  },
+                }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                fluid
+              >
                 <h2>Prime Areas:</h2>
                 <p className="fs-4">
                   The Prime Areas are fundamental to igniting a child’s
@@ -68,7 +100,7 @@ const Approach = (): JSX.Element => {
                 </p>
                 <Container
                   fluid
-                  className={`d-flex flex-wrap flex-row text-center justify-content-evenly w-100 p-0`}
+                  className="d-flex flex-wrap flex-row text-center justify-content-evenly w-100 p-0"
                 >
                   <Area
                     type="prime"
@@ -98,11 +130,11 @@ const Approach = (): JSX.Element => {
                     abilities."
                   />
                 </Container>
-              </Container>
+              </MotionContainer>
             </Tab>
             <Tab
-              className="h-auto bg-white"
-              eventKey="profile"
+              className="h-auto bg-white mb-3"
+              eventKey="specific"
               title="Specific Areas"
             >
               <Container fluid>
@@ -114,7 +146,13 @@ const Approach = (): JSX.Element => {
               </Container>
               <Container
                 fluid
-                className={`d-flex flex-wrap flex-row text-center justify-content-between w-100 p-0`}
+                className={cn(
+                  "d-flex flex-wrap flex-row text-center w-100 p-0",
+                  {
+                    "justify-content-between": !swapArea,
+                    "justify-content-evenly": swapArea,
+                  }
+                )}
               >
                 <Area
                   type="specific"
@@ -154,13 +192,32 @@ const Approach = (): JSX.Element => {
             </Tab>
           </Tabs>
         </Container>
-      </Container>
+      </MotionContainer>
       <Container
         fluid
         className="d-flex flex-column bg-turquoise text-white rounded-top-5 align-items-center pb-5"
       >
-        <h1 className="text-center">The Curiosity Approach </h1>
-        <Container fluid={isTablet} className="fs-4">
+        <motion.h1
+          initial="hidden"
+          whileInView="visible"
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInYVariants}
+          className="text-center"
+          custom={20}
+        >
+          The Curiosity Approach
+        </motion.h1>
+        <MotionContainer
+          initial="hidden"
+          whileInView="visible"
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInYVariants}
+          custom={20}
+          fluid={isTablet}
+          className="fs-4"
+        >
           <p>
             The curiosity approach is a modern 21st Century Approach to
             childcare drawing on elements from historical childcare theorists;
@@ -200,6 +257,7 @@ const Approach = (): JSX.Element => {
                 </li>
               </ul>
             </div>
+
             <div
               className={cn(`image-stack align-self-center`, {
                 "w-35": isXXl,
@@ -212,20 +270,10 @@ const Approach = (): JSX.Element => {
               })}
             >
               <div className=" image-stack__item--bottom-right bg-white" />
-              <Image
-                // roundedCircle
-                className="image-stack__item--top-left"
-                // className="vw-30 vh-50"
-                // className={cn({
-                //   "mw-95 ms-5 vh-60 ": !isTablet && !isMobile && !isSmallDesktop,
-                //   "vh-50": isSmallDesktop,
-                //   "w-100 pt-2": isTablet || isMobile,
-                // })}
-                src={curious}
-              />
+              <Image className="image-stack__item--top-left" src={curious} />
             </div>
           </div>
-        </Container>
+        </MotionContainer>
       </Container>
     </div>
   );

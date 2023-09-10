@@ -23,6 +23,9 @@ import {
   MotionCard,
   MotionContainer,
   MotionImage,
+  easeIn,
+  easeInXVariants,
+  easeInYVariants,
 } from "../../components/MotionComponents";
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
@@ -145,12 +148,10 @@ const Home = (): JSX.Element => {
           src={childDrawing}
           initial="hidden"
           whileInView="visible"
-          transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-          viewport={{ once: false }}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 20 },
-          }}
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInYVariants}
+          custom={20}
         />
         <MotionCard
           className={cn(
@@ -164,12 +165,10 @@ const Home = (): JSX.Element => {
           )}
           initial="hidden"
           whileInView="visible"
-          transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-          viewport={{ once: false }}
-          variants={{
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 20 },
-          }}
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInYVariants}
+          custom={20}
         >
           <Card.Text className="text-light text-center">
             <h1
@@ -216,14 +215,11 @@ const Home = (): JSX.Element => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-            viewport={{ once: false }}
-            variants={{
-              visible: { opacity: 1, x: 0 },
-              hidden: { opacity: 0, x: 50 },
-            }}
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={50}
           >
-            {" "}
             <h1>Welcome!</h1>
             <p className="fs-4">
               At Simply 4 Childcare we believe that 'every child is unique and
@@ -268,7 +264,7 @@ const Home = (): JSX.Element => {
           }}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           fluid
           className={"d-flex w-100 flex-wrap flex-row justify-content-evenly"}
         >
@@ -279,7 +275,7 @@ const Home = (): JSX.Element => {
         <h1 className="bg-white w-auto align-self-center display-5 fw-normal">
           Where to find us
         </h1>
-        <Container
+        <MotionContainer
           fluid
           className={cn("d-flex text-light align-self-center", {
             "flex-row": isXXl || isXl,
@@ -290,6 +286,12 @@ const Home = (): JSX.Element => {
             "vw-55": isLg || isMd,
             "vw-95": isXXs,
           })}
+          initial="hidden"
+          whileInView="visible"
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInYVariants}
+          custom={50}
         >
           <Container
             fluid
@@ -376,7 +378,7 @@ const Home = (): JSX.Element => {
           ) : (
             <></>
           )}
-        </Container>
+        </MotionContainer>
       </Container>
     </div>
   );

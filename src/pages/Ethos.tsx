@@ -5,6 +5,13 @@ import relationship from "../assets/Ethos/stock-photo-we-are-great-team-laughing
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import { motion } from "framer-motion";
+import {
+  titlePulse,
+  pulseVariants,
+  easeIn,
+  easeInXVariants,
+  easeInYVariants,
+} from "../components/MotionComponents";
 
 const Ethos = (): JSX.Element => {
   return (
@@ -15,17 +22,9 @@ const Ethos = (): JSX.Element => {
           <motion.h1
             initial="initial"
             whileInView="enlarge"
-            transition={{
-              delay: 0.2,
-              repeat: 1,
-              repeatType: "reverse",
-              duration: 0.5,
-            }}
-            viewport={{ once: false }}
-            variants={{
-              enlarge: { scale: 1.1 },
-              initial: { scale: 1 },
-            }}
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
             className="fw-bolder display-1"
           >
             Our Ethos
@@ -35,12 +34,10 @@ const Ethos = (): JSX.Element => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-        viewport={{ once: false }}
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
-        }}
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={20}
       >
         <Section
           content={
@@ -65,12 +62,10 @@ const Ethos = (): JSX.Element => {
           <motion.p
             initial="hidden"
             whileInView="visible"
-            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-            viewport={{ once: false }}
-            variants={{
-              visible: { opacity: 1, x: 0 },
-              hidden: { opacity: 0, x: 50 },
-            }}
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={50}
             className="fs-3"
           >
             Simply 4 Childcare pride ourselves in paying close attention to what
@@ -95,12 +90,10 @@ const Ethos = (): JSX.Element => {
           <motion.p
             initial="hidden"
             whileInView="visible"
-            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-            viewport={{ once: false }}
-            variants={{
-              visible: { opacity: 1, x: 0 },
-              hidden: { opacity: 0, x: -50 },
-            }}
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={-50}
             className="fs-3 bg-white"
           >
             Simply 4 Childcare are dedicated to delivering high quality practice

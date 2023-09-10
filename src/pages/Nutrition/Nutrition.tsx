@@ -6,25 +6,52 @@ import MediaCarousel from "../../components/MediaCarousel/MediaCarousel";
 import ImageOverlay from "../../components/ImageTextOverlay/ImageTextOverlay";
 import Section from "../../components/Section/Section";
 import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
+import { motion } from "framer-motion";
+
 import cn from "classnames";
+import {
+  MotionContainer,
+  titlePulse,
+  pulseVariants,
+  easeIn,
+  easeInXVariants,
+  easeInYVariants,
+} from "../../components/MotionComponents";
 
 const menuPictures = require.context("../../assets/Nutrition/Menus", true);
 const menuMedia = menuPictures.keys().map((menu) => menuPictures(menu));
 
 const Nutrition = (): JSX.Element => {
   const { isXXs, isXs, isSm, isMd, isLg, isXl, isXXl } = useScreenSize();
+
   return (
     <>
       <ImageOverlay
         imageSrc={nutrition}
         content={
-          <h1 className="text-light fw-bolder " style={{ fontSize: "5rem" }}>
+          <motion.h1
+            initial="initial"
+            whileInView="enlarge"
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
+            className="fw-bolder display-1"
+          >
             Nutrition
-          </h1>
+          </motion.h1>
         }
       />
+
       <Container className="d-flex flex-column align-items-center justify-content-evenly  text-black curved-section-right">
-        <Container className="d-flex flex-column ">
+        <MotionContainer
+          className="d-flex flex-column"
+          initial="hidden"
+          whileInView="visible"
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInYVariants}
+          custom={80}
+        >
           <h1 className="align-self-center">Sample Menus:</h1>
           <div
             className={cn("align-self-center mb-2", {
@@ -46,11 +73,18 @@ const Nutrition = (): JSX.Element => {
               E- Contains egg
             </p>
           </div>
-        </Container>
+        </MotionContainer>
       </Container>
       <Section
         content={
-          <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={50}
+          >
             <p className="fs-3">
               Children start learning about food at a very early age. The
               messages they receive during this time lay the foundations for the
@@ -65,7 +99,7 @@ const Nutrition = (): JSX.Element => {
               day. These guidelines are used to prepare, plan and cook the
               children healthy and balanced menus.
             </p>
-          </>
+          </motion.div>
         }
         imageSrc={lunch}
         imagePosition="left"
@@ -79,7 +113,14 @@ const Nutrition = (): JSX.Element => {
       />
       <Section
         content={
-          <>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={-50}
+          >
             <p className="fs-3">
               The nutrient and food-based government standards aim to make the
               food offered healthier by:
@@ -103,7 +144,7 @@ const Nutrition = (): JSX.Element => {
               We cater to weaning babies as well as special dietary requirements
               and allergies.
             </p>
-          </>
+          </motion.div>
         }
         imageSrc={healthy}
         imagePosition="right"

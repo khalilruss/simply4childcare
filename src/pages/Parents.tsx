@@ -1,9 +1,17 @@
-import { Container } from "react-bootstrap";
 import handshake from "../assets/Parents/stock-photo-japanese-parent-and-child-holding-hands-in-the-living-room-2325395553.jpg";
 import parents from "../assets/Parents/stock-photo-diverse-children-enjoying-playing-with-toys-1243109917.jpg";
-import atHome from "../assets/Parents/stock-photo-family-spend-time-happiness-holiday-togetherness-559207186.jpg";
+// import atHome from "../assets/Parents/stock-photo-family-spend-time-happiness-holiday-togetherness-559207186.jpg";
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
+import { motion } from "framer-motion";
+import {
+  MotionContainer,
+  titlePulse,
+  pulseVariants,
+  easeIn,
+  easeInXVariants,
+  easeInYVariants,
+} from "../components/MotionComponents";
 
 const Parents = (): JSX.Element => {
   return (
@@ -11,12 +19,27 @@ const Parents = (): JSX.Element => {
       <ImageOverlay
         imageSrc={handshake}
         content={
-          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+          <motion.h1
+            initial="initial"
+            whileInView="enlarge"
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
+            className="fw-bolder display-1"
+          >
             Parents as Partners
-          </h1>
+          </motion.h1>
         }
       />
-      <Container className="mt-5 bg-white">
+      <MotionContainer
+        className="mt-5 bg-white"
+        initial="hidden"
+        whileInView="visible"
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={80}
+      >
         <h2>Closures</h2>
         <p className="fs-4">
           Please note that we are closed on Public/Bank Holidays and INSET days.
@@ -32,33 +55,50 @@ const Parents = (): JSX.Element => {
           inductions. They are also explained to parents at
           registration/settling in visits.
         </p>
-      </Container>
+      </MotionContainer>
       <Section
         content={
-          <>
-            <h2>Easy activities to do at home with your child</h2>
-            <p className="fs-4">Reading at home (Simply Reading)</p>
-            <p className="fs-4">Maths at home (Simply Maths) </p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={-50}
+          >
+            <h2>Parent carer workshops</h2>
+            <p className="fs-4">Potty training</p>
+            <p className="fs-4">Biting </p>
+            <p className="fs-4">New siblings </p>
+            <p className="fs-4">Establishing routines </p>
+            <p className="fs-4">Understanding child development </p>
+            <p className="fs-4"> School reediness </p>
             <p className="fs-4">
-              Sports, music and dance at home (Simply movement){" "}
+              Early Literacy, numeracy and introduction to phonics{" "}
             </p>
-            <p className="fs-4">Healthy eating (Simply nutrition/recipes) </p>
-            <p className="fs-4">Outdoor learning (Simply outdoors) </p>
-            <p className="fs-4">Arts and crafts at home (Simply creative)</p>
-          </>
+            <p className="fs-4">Dealing with unwanted behaviour </p>
+            <p className="fs-4">Understanding the EYFS curriculum </p>
+          </motion.div>
         }
-        imageSrc={atHome}
-        imagePosition="left"
+        imageSrc={parents}
+        imagePosition="right"
         imageWidth="w-35"
         imageStacked={true}
-        stackDirection="right"
-        stackBackgroundColor="bg-dark-yellow"
+        stackDirection="left"
+        stackBackgroundColor="bg-yellow"
         background={true}
-        backgroundColor="bg-light-green"
-        curveDirection="right"
+        backgroundColor="bg-light-pink"
+        curveDirection="left"
       />
-
-      <Container className="mt-5 bg-white">
+      <MotionContainer
+        className="mt-5 bg-white mb-5"
+        initial="hidden"
+        whileInView="visible"
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={80}
+      >
         <h2>Communication</h2>
         <p className="fs-4">
           As well as daily verbal feedback we use an online daily diary to help
@@ -80,34 +120,7 @@ const Parents = (): JSX.Element => {
           with access to the Tapestry profile so you can all share the
           excitement of the growth of your child.
         </p>
-      </Container>
-      <Section
-        content={
-          <>
-            <h2>Parent carer workshops</h2>
-            <p className="fs-4">Potty training</p>
-            <p className="fs-4">Biting </p>
-            <p className="fs-4">New siblings </p>
-            <p className="fs-4">Establishing routines </p>
-            <p className="fs-4">Understanding child development </p>
-            <p className="fs-4"> School reediness </p>
-            <p className="fs-4">
-              Early Literacy, numeracy and introduction to phonics{" "}
-            </p>
-            <p className="fs-4">Dealing with unwanted behaviour </p>
-            <p className="fs-4">Understanding the EYFS curriculum </p>
-          </>
-        }
-        imageSrc={parents}
-        imagePosition="right"
-        imageWidth="w-35"
-        imageStacked={true}
-        stackDirection="left"
-        stackBackgroundColor="bg-yellow"
-        background={true}
-        backgroundColor="bg-light-pink"
-        curveDirection="left"
-      />
+      </MotionContainer>
     </>
   );
 };

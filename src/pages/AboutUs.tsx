@@ -5,6 +5,13 @@ import caringStaff from "../assets/About/stock-photo-female-infant-school-teache
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import { motion } from "framer-motion";
+import {
+  titlePulse,
+  pulseVariants,
+  easeIn,
+  easeInXVariants,
+  easeInYVariants,
+} from "../components/MotionComponents";
 
 const AboutUs = (): JSX.Element => {
   return (
@@ -15,17 +22,9 @@ const AboutUs = (): JSX.Element => {
           <motion.div
             initial="initial"
             whileInView="enlarge"
-            transition={{
-              delay: 0.2,
-              repeat: 1,
-              repeatType: "reverse",
-              duration: 0.5,
-            }}
-            viewport={{ once: false }}
-            variants={{
-              enlarge: { scale: 1.1 },
-              initial: { scale: 1 },
-            }}
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
           >
             <h1 className=" fw-bolder display-1">About Us</h1>
             <p className="fs-2 w-0">
@@ -38,12 +37,10 @@ const AboutUs = (): JSX.Element => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-        viewport={{ once: false }}
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
-        }}
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={20}
       >
         <Section
           content={
@@ -73,12 +70,10 @@ const AboutUs = (): JSX.Element => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-            viewport={{ once: false }}
-            variants={{
-              visible: { opacity: 1, x: 0 },
-              hidden: { opacity: 0, x: 50 },
-            }}
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={50}
           >
             <h2>Independent, happy children</h2>
             <p className="fs-3">
@@ -110,12 +105,10 @@ const AboutUs = (): JSX.Element => {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            transition={{ ease: "easeIn", delay: 0.2, duration: 0.4 }}
-            viewport={{ once: false }}
-            variants={{
-              visible: { opacity: 1, x: 0 },
-              hidden: { opacity: 0, x: -50 },
-            }}
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={-50}
           >
             <h2>Professional, caring staff</h2>
             <p className="fs-3">

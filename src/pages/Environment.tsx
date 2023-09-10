@@ -5,6 +5,15 @@ import MediaCarousel from "../components/MediaCarousel/MediaCarousel";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import cn from "classnames";
 import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
+import { motion } from "framer-motion";
+import {
+  MotionContainer,
+  titlePulse,
+  pulseVariants,
+  easeIn,
+  easeInXVariants,
+  easeInYVariants,
+} from "../components/MotionComponents";
 
 const room1 = require.context("../assets/Environment/Room1", true);
 const room1Media = room1.keys().map((media) => room1(media));
@@ -24,16 +33,29 @@ const Environment = (): JSX.Element => {
       <ImageOverlay
         imageSrc={environment}
         content={
-          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+          <motion.h1
+            initial="initial"
+            whileInView="enlarge"
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
+            className="fw-bolder display-1"
+          >
             Our Environment
-          </h1>
+          </motion.h1>
         }
       />
-      <Container
+      <MotionContainer
         fluid
         className={`d-flex align-content-center justify-content-evenly text-dark mt-5 ${
-          !isTablet ? "mb-10 flex-row vh-60" : "mb-4 flex-column"
+          !isTablet ? "mb-7 flex-row vh-60" : "mb-4 flex-column"
         }`}
+        initial="hidden"
+        whileInView="visible"
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={80}
       >
         <div
           className={cn("align-self-center bg-white", {
@@ -61,7 +83,7 @@ const Environment = (): JSX.Element => {
         >
           <MediaCarousel media={room1Media} />
         </div>
-      </Container>
+      </MotionContainer>
       <Container
         fluid
         className={`d-flex flex-row justify-content-between mt-4 text-white curved-section-left bg-base ${
@@ -85,11 +107,17 @@ const Environment = (): JSX.Element => {
           >
             <MediaCarousel media={room2Media} />
           </div>
-          <div
+          <motion.div
             className={cn("align-self-center", {
               "mw-40": !isTablet,
               "mb-4": isTablet,
             })}
+            initial="hidden"
+            whileInView="visible"
+            transition={easeIn}
+            viewport={{ once: true }}
+            variants={easeInXVariants}
+            custom={50}
           >
             <h1>Room 2</h1>
             <p className="fs-3">
@@ -100,7 +128,7 @@ const Environment = (): JSX.Element => {
               has its own toilet area to support your child to begin to potty
               train.
             </p>
-          </div>
+          </motion.div>
         </Container>
       </Container>
       <Container
@@ -109,11 +137,17 @@ const Environment = (): JSX.Element => {
           !isTablet ? "mb-8 flex-row vh-60" : "mb-4 flex-column"
         }`}
       >
-        <div
+        <motion.div
           className={cn("align-self-center bg-white", {
             "mw-40": !isTablet,
             "mb-4": isTablet,
           })}
+          initial="hidden"
+          whileInView="visible"
+          transition={easeIn}
+          viewport={{ once: true }}
+          variants={easeInXVariants}
+          custom={-50}
         >
           <h1>Garden</h1>
           <p className="fs-3">
@@ -126,7 +160,7 @@ const Environment = (): JSX.Element => {
             11 listed mill) which, contains a large grass play area, outdoor
             seating area and climbing frames.
           </p>
-        </div>
+        </motion.div>
         <div
           className={cn("align-self-center", {
             "vw-100": isXs || isXXs,

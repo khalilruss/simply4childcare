@@ -1,6 +1,8 @@
 import { Container, Table } from "react-bootstrap";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import counting from "../assets/Fees/stock-photo-little-boy-counting-his-savings-167008340.jpg";
+import { titlePulse, pulseVariants } from "../components/MotionComponents";
+import { motion } from "framer-motion";
 
 const Fees = (): JSX.Element => {
   return (
@@ -8,9 +10,16 @@ const Fees = (): JSX.Element => {
       <ImageOverlay
         imageSrc={counting}
         content={
-          <h1 className="text-light fw-bolder" style={{ fontSize: "5rem" }}>
+          <motion.h1
+            initial="initial"
+            whileInView="enlarge"
+            transition={titlePulse}
+            viewport={{ once: true }}
+            variants={pulseVariants}
+            className="fw-bolder display-1"
+          >
             Fees & Sessions
-          </h1>
+          </motion.h1>
         }
       />
       <Container className="bg-white">
@@ -46,34 +55,28 @@ const Fees = (): JSX.Element => {
             <tr>
               <th>Session</th>
               <th>Weekly</th>
-              <th>Monthly</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1 Day</td>
               <td>£60.00</td>
-              <td>£</td>
             </tr>
             <tr>
               <td>2 Days</td>
               <td>£120.00</td>
-              <td>£</td>
             </tr>
             <tr>
               <td>3 Days</td>
               <td>£180.00</td>
-              <td>£</td>
             </tr>
             <tr>
               <td>4 Days</td>
               <td>£240.00</td>
-              <td>£</td>
             </tr>
             <tr>
               <td>5 Days</td>
               <td>£280.00</td>
-              <td>£</td>
             </tr>
           </tbody>
         </Table>

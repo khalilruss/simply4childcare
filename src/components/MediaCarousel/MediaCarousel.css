@@ -22,13 +22,6 @@ background-color: white;
   align-items: center;
 }
 
-/* .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
-
 .fullscreen-button {
   position: absolute;
   top: 20px;
@@ -41,6 +34,9 @@ background-color: white;
   width: 5%;
 }
 
-.swiper-slide-prev, .swiper-slide-next{
-opacity: 0.3;
+@media (max-width: 1200px) {
+  .swiper-slide-prev, .swiper-slide-next{
+    opacity: 0.3;
+    }
 }
+
