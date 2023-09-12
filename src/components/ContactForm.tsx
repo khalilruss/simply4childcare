@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
     .required("Email is required")
     .matches(emailRegex, "Email is invalid"),
   number: Yup.string()
-    .phone("GB", "${path} is invalid")
+    .phone("GB", "number is invalid")
     .required("Please enter a contact number"),
   additional_comments: Yup.string(),
 });
