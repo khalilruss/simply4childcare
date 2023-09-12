@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY}}
+      REACT_APP_EMAIL_JS_API_KEY: ${{ secrets.EMAIL_JS_API_KEY}}
     steps:
       - name: Checkout Main Branch
         uses: actions/checkout@v3

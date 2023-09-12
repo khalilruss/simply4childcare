@@ -1,8 +1,13 @@
-import { Container, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import counting from "../assets/Fees/stock-photo-little-boy-counting-his-savings-167008340.jpg";
 import { titlePulse, pulseVariants } from "../components/MotionComponents";
 import { motion } from "framer-motion";
+import {
+  MotionContainer,
+  easeIn,
+  easeInYVariants,
+} from "../components/MotionComponents";
 
 const Fees = (): JSX.Element => {
   return (
@@ -22,7 +27,15 @@ const Fees = (): JSX.Element => {
           </motion.h1>
         }
       />
-      <Container className="bg-white">
+      <MotionContainer
+        className="bg-white"
+        initial="hidden"
+        whileInView="visible"
+        transition={easeIn}
+        viewport={{ once: true }}
+        variants={easeInYVariants}
+        custom={50}
+      >
         <h1>Sessions:</h1>
         <p className="fs-4">
           Full Day sessions - 8.00am-6.00pm, 52 weeks per year (Charges still
@@ -117,7 +130,7 @@ const Fees = (): JSX.Element => {
           All fees are revised annually at the beginning of March and
           implemented at the beginning of April.
         </p>
-      </Container>
+      </MotionContainer>
     </>
   );
 };

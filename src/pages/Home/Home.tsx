@@ -7,6 +7,7 @@ import smileyHands from "../../assets/Home/stock-photo-nursery-children-playing-
 import welcome from "../../assets/Home/stock-photo--the-very-best-of-friends-children-in-preschool-1418714162.jpg";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 import { motion, AnimatePresence } from "framer-motion";
+import { ToastContainer } from "react-toastify";
 
 import { useState, MouseEvent, useRef, useEffect } from "react";
 import { Link } from "react-scroll";
@@ -27,6 +28,7 @@ import {
   easeInXVariants,
   easeInYVariants,
 } from "../../components/MotionComponents";
+
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -379,6 +381,7 @@ const Home = (): JSX.Element => {
             <></>
           )}
         </MotionContainer>
+        <ToastContainer limit={1} />
       </Container>
     </div>
   );
