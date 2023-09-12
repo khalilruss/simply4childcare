@@ -42,9 +42,9 @@ const Ethos = (): JSX.Element => {
         <Section
           content={
             <p className="fs-3 bg-white">
-              Simply 4 Childcare pioneer a forward-thinking approach each and
-              every day. We will achieve this by making significant investments
-              in our learning and development by ensuring ongoing training and
+              Lorene's House pioneer a forward-thinking approach each and every
+              day. We will achieve this by making significant investments in our
+              learning and development by ensuring ongoing training and
               professional development.
             </p>
           }
@@ -68,7 +68,7 @@ const Ethos = (): JSX.Element => {
             custom={50}
             className="fs-3"
           >
-            Simply 4 Childcare pride ourselves in paying close attention to what
+            Lorene's House pride ourselves in paying close attention to what
             children tell us and show us. By doing this, we are able to gain
             important insights into the minds and to the development of each
             child. Focusing a child’s strengths, passions and interests, as they
@@ -96,13 +96,13 @@ const Ethos = (): JSX.Element => {
             custom={-50}
             className="fs-3 bg-white"
           >
-            Simply 4 Childcare are dedicated to delivering high quality practice
-            and leadership. We work hard each day to build excellent
-            relationships with each other, the children and their parents. Our
-            environment is calm and nurturing. The children’s happiness is our
-            always number one priority. Our home-from-home atmosphere enables
-            the children to develop a sense of security and allows them to excel
-            in all areas of their development.
+            Lorene's House are dedicated to delivering high quality practice and
+            leadership. We work hard each day to build excellent relationships
+            with each other, the children and their parents. Our environment is
+            calm and nurturing. The children’s happiness is our always number
+            one priority. Our home-from-home atmosphere enables the children to
+            develop a sense of security and allows them to excel in all areas of
+            their development.
           </motion.p>
         }
         imageSrc={relationship}

@@ -41,7 +41,7 @@ const Approach = (): JSX.Element => {
           >
             <h1 className=" fw-bolder display-1">Our Approach</h1>
             <p className="fs-2 w-0">
-              At Simply 4 Childcare we combine the Early Years Foundation Stage
+              At Lorene's House we combine the Early Years Foundation Stage
               framework with the ‘Curiosity Approach’ to plan for learning.
             </p>
           </motion.div>

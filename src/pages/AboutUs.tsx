@@ -28,8 +28,8 @@ const AboutUs = (): JSX.Element => {
           >
             <h1 className=" fw-bolder display-1">About Us</h1>
             <p className="fs-2 w-0">
-              Every day at Simply 4 Childcare is packed with fun-filled learning
-              and adventures.
+              Every day at Lorene's House is packed with fun-filled learning and
+              adventures.
             </p>
           </motion.div>
         }
@@ -82,7 +82,7 @@ const AboutUs = (): JSX.Element => {
               stays with them for life.
             </p>
             <p className="fs-3">
-              At Simply 4 childcare, we encourage independence by letting our
+              At Lorene's House, we encourage independence by letting our
               children choose what they want to play with throughout most of the
               day. This helps them to become confident at making choices as they
               grow. The amazing staff also plan special adult led activities to
@@ -116,7 +116,7 @@ const AboutUs = (): JSX.Element => {
               daily routine that is displayed and shared with parents. Our staff
               are fully qualified to work with children, or have many years’
               experience within the sector. We also attend regular training
-              sessions, delivered in-house or by outside trainers, to energize
+              sessions, delivered in-house or by outside trainers, to energise
               us and keep our ideas, knowledge and skills fresh.
             </p>
             <p className="fs-3">
