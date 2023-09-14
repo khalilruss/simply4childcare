@@ -1,8 +1,10 @@
+import counting from "../assets/Fees/shutterstock_167008340.jpg";
+
 import { Table } from "react-bootstrap";
-import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
-import counting from "../assets/Fees/stock-photo-little-boy-counting-his-savings-167008340.jpg";
-import { titlePulse, pulseVariants } from "../components/MotionComponents";
 import { motion } from "framer-motion";
+
+import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
+import { titlePulse, pulseVariants } from "../components/MotionComponents";
 import {
   MotionContainer,
   easeIn,

@@ -1,25 +1,25 @@
+import playground from "../../assets/Home/shutterstock_688397077.jpg";
+import woodenBlocks from "../../assets/Home/shutterstock_1704370456.jpg";
+import handsTogether from "../../assets/Home/shutterstock_309237581.jpg";
+import childrenPlaying from "../../assets/Home/shutterstock_1240454104.jpg";
+import childDrawing from "../../assets/Home/shutterstock_1009485583.jpg";
+import welcome from "../../assets/Home/shutterstock_1418714162.jpg";
+
 import { Container, Card, Button } from "react-bootstrap";
-import childDrawing from "../../assets/Home/stock-photo-kids-drawing-on-floor-on-paper-preschool-boy-and-girl-play-on-floor-with-educational-toys-blocks-1009485583.jpg";
-import handsTogether from "../../assets/Home/stock-photo-diverse-classmates-holding-arms-on-campus-309237581.jpg";
-import woodenBlocks from "../../assets/Home/wooden-blocks.jpg";
-import playground from "../../assets/Home/playground.jpg";
-import smileyHands from "../../assets/Home/stock-photo-nursery-children-playing-with-teacher-in-the-classroom-1240454104.jpg";
-import welcome from "../../assets/Home/stock-photo--the-very-best-of-friends-children-in-preschool-1418714162.jpg";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
-
 import { useState, MouseEvent, useRef, useEffect } from "react";
 import { Link } from "react-scroll";
 import cn from "classnames";
-import ImageButton, {
-  ImageButtonProps,
-} from "../../components/ImageButton/ImageButton";
-import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
 
 import "./Home.css";
 import ContactForm from "../../components/ContactForm";
 import Section from "../../components/Section/Section";
+import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
+import ImageButton, {
+  ImageButtonProps,
+} from "../../components/ImageButton/ImageButton";
 import {
   MotionCard,
   MotionContainer,
@@ -80,7 +80,7 @@ const Home = (): JSX.Element => {
 
   const imageButtons: ImageButtonProps[] = [
     {
-      imageSrc: smileyHands,
+      imageSrc: childrenPlaying,
       backgroundColor: "bg-light-pink",
       buttonText: "About Us",
     },

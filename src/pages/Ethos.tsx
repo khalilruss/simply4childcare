@@ -1,7 +1,8 @@
-import rainbow from "../assets/Ethos/stock-photo-close-up-photo-of-child-s-hands-touch-painting-rainbow-on-window-family-life-background-image-of-1694662114.jpg";
-import thinking from "../assets/Ethos/stock-photo-successful-black-child-student-pointing-at-lightbulb-brainstorming-and-idea-concept-1759350455.jpg";
-import quality from "../assets/Ethos/stock-vector-learning-day-care-center-icon-element-of-education-line-icon-1476186818.jpg";
-import relationship from "../assets/Ethos/stock-photo-we-are-great-team-laughing-indian-mommy-give-high-five-to-happy-kid-son-celebrate-building-of-high-1903206772.jpg";
+import rainbow from "../assets/Ethos/shutterstock_1694662114.jpg";
+import thinking from "../assets/Ethos/shutterstock_1759350455.jpg";
+import quality from "../assets/Ethos/shutterstock_1476186818.svg";
+import relationship from "../assets/Ethos/shutterstock_1903206772.jpg";
+
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import { motion } from "framer-motion";

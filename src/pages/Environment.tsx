@@ -1,11 +1,13 @@
+import environment from "../assets/Environment/shutterstock_1999540577.jpg";
+
 import { Container } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
-import environment from "../assets/Environment/stock-photo-world-environment-day-concept-a-mother-s-hand-embrace-her-little-daughter-s-hands-child-hand-s-1999540577.jpg";
+import cn from "classnames";
+import { motion } from "framer-motion";
+
 import MediaCarousel from "../components/MediaCarousel/MediaCarousel";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
-import cn from "classnames";
 import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
-import { motion } from "framer-motion";
 import {
   MotionContainer,
   titlePulse,

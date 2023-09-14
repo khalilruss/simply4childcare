@@ -1,19 +1,21 @@
+import banner from "../assets/Approach/shutterstock_408189730.jpg";
+import communication from "../assets/Approach/shutterstock_116233960.jpg";
+import physical from "../assets/Approach/shutterstock_159883541.jpg";
+import handsTogether from "../assets/Approach/shutterstock_1123116176.jpg";
+import literary from "../assets/Approach/shutterstock_447567064.jpg";
+import maths from "../assets/Approach/shutterstock_654603802.jpg";
+import globe from "../assets/Approach/shutterstock_309242759.jpg";
+import arts from "../assets/Approach/shutterstock_2029379030.jpg";
+import curious from "../assets/Approach/shutterstock_624381875.jpg";
+
 import { Container, Image, Tabs, Tab } from "react-bootstrap";
-import communication from "../assets/Approach/stock-photo-young-brothers-talking-with-tin-can-telephone-on-grunge-background-116233960.jpg";
-import handsTogether from "../assets/Approach/stock-photo-group-of-children-putting-their-hands-together-1123116176.jpg";
-import physical from "../assets/Approach/stock-photo-group-of-little-and-years-old-kids-boys-and-girls-running-holding-hands-together-in-the-park-159883541.jpg";
-import banner from "../assets/Approach/stock-photo-red-green-blue-jars-with-large-lettering-one-two-and-three-on-the-table-in-the-kindergarten-class-408189730.jpg";
-import literary from "../assets/Approach/stock-photo-female-teacher-giving-a-lesson-to-nursery-students-they-are-sitting-on-the-floor-and-there-is-a-447567064.jpg";
-import maths from "../assets/Approach/stock-photo-happy-schoolgirl-preschool-girl-with-book-near-school-board-blackboard-654603802.jpg";
-import globe from "../assets/Approach/stock-photo-pupils-looking-at-globe-in-library-at-the-elementary-school-309242759.jpg";
-import arts from "../assets/Approach/stock-photo-group-of-small-nursery-school-children-with-teacher-indoors-in-classroom-painting-2029379030.jpg";
-import curious from "../assets/Approach/stock-photo-little-girl-holding-magnifying-glass-smiling-624381875.jpg";
 import { useMediaQuery } from "react-responsive";
-import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import cn from "classnames";
+import { motion } from "framer-motion";
+
+import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import Area from "../components/Area";
 import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
-import { motion } from "framer-motion";
 import {
   MotionContainer,
   titlePulse,

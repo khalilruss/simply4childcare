@@ -9,7 +9,7 @@ import Home from "./pages/Home/Home";
 import AboutUs from "./pages/AboutUs";
 import Ethos from "./pages/Ethos";
 import Approach from "./pages/Approach";
-import Nutrition from "./pages/Nutrition/Nutrition";
+import Nutrition from "./pages/Nutrition";
 import Parents from "./pages/Parents";
 import Environment from "./pages/Environment";
 import Fees from "./pages/Fees";

@@ -1,7 +1,8 @@
-import children from "../assets/About/stock-photo-diverse-children-enjoying-playing-with-toys-1247691913.jpg";
-import happyChild from "../assets/About/stock-photo-children-toddlers-girls-play-logical-toy-learning-shapes-arithmetic-and-colors-at-home-644198899.jpg";
-import childPlaying from "../assets/About/stock-photo-young-boy-playing-with-educational-toys-1234278556.jpg";
-import caringStaff from "../assets/About/stock-photo-female-infant-school-teacher-working-one-on-one-with-a-young-schoolboy-sitting-at-a-table-smiling-1283557810.jpg";
+import happyChild from "../assets/About/shutterstock_644198899.jpg";
+import childPlaying from "../assets/About/shutterstock_1234278556.jpg";
+import children from "../assets/About/shutterstock_1247691913.jpg";
+import caringStaff from "../assets/About/shutterstock_1283557810.jpg";
+
 import Section from "../components/Section/Section";
 import ImageOverlay from "../components/ImageTextOverlay/ImageTextOverlay";
 import { motion } from "framer-motion";
