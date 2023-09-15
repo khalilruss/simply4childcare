@@ -119,7 +119,7 @@ const Approach = (): JSX.Element => {
                     text="Encouraging children to be active and interactive
                     developing their coordination, control and movement.
                     Promoting the importance of physical activity and making
-                    health eating choices."
+                    healthy eating choices."
                   />
                   <Area
                     type="prime"

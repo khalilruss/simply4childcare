@@ -2,8 +2,7 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 import ScreenSizeProvider from "./screenSizeContext/ScreenSizeProvider";
-
-import Navigationbar from "./components/Navbar";
+import Navigationbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home/Home";
 import AboutUs from "./pages/AboutUs";

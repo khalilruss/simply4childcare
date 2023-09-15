@@ -1,11 +1,14 @@
 import { Nav, Navbar, NavLink, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import logo from "../assets/Lorenes-House2.svg";
+import logo from "../../assets/Lorenes-House2.svg";
 import cn from "classnames";
 
 import "./Navbar.css";
-import { useScreenSize } from "../screenSizeContext/ScreenSizeContext";
-import { MotionLink, MotionNavDropdown } from "../components/MotionComponents";
+import { useScreenSize } from "../../screenSizeContext/ScreenSizeContext";
+import {
+  MotionLink,
+  MotionNavDropdown,
+} from "../../components/MotionComponents";
 
 const Navigationbar = () => {
   const { isXXs, isXs, isSm } = useScreenSize();

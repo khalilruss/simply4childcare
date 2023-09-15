@@ -159,7 +159,7 @@ const Environment = (): JSX.Element => {
             outdoor play. We have created a shelter to provide shade in the
             summer, and the planting area is perfect for mini gardeners. We are
             also situated adjacent to Windmill Park (part of Ashby’s Mill grade
-            11 listed mill) which, contains a large grass play area, outdoor
+            II listed mill) which, contains a large grass play area, outdoor
             seating area and climbing frames.
           </p>
         </motion.div>
