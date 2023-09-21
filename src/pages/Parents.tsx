@@ -33,7 +33,7 @@ const Parents = (): JSX.Element => {
         }
       />
       <MotionContainer
-        className="mt-5 bg-white"
+        className="mt-5 bg-white d-flex flex-column align-self-center"
         initial="hidden"
         whileInView="visible"
         transition={easeIn}
@@ -92,7 +92,7 @@ const Parents = (): JSX.Element => {
         curveDirection="left"
       />
       <MotionContainer
-        className="mt-5 bg-white mb-5"
+        className="mt-5 bg-white mb-5 d-flex flex-column align-self-center"
         initial="hidden"
         whileInView="visible"
         transition={easeIn}

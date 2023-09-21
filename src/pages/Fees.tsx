@@ -30,7 +30,7 @@ const Fees = (): JSX.Element => {
         }
       />
       <MotionContainer
-        className="bg-white"
+        className="bg-white d-flex flex-column align-self-center"
         initial="hidden"
         whileInView="visible"
         transition={easeIn}
