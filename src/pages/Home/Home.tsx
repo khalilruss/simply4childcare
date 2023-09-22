@@ -339,7 +339,7 @@ const Home = (): JSX.Element => {
                       </h1>
                       <p className={`${!isSmallScreen ? "fs-5" : "fs-6"}`}>
                         Email: janice.copeland@simply4group.co.uk <br />
-                        Contact Number: 07789799535
+                        Contact Number: 07305811142
                       </p>
 
                       <h1
