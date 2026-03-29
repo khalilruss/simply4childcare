@@ -55,7 +55,7 @@ const ContactForm = ({
         "s4c_email_service",
         "lorenes_house_template",
         formData,
-        `${process.env.REACT_APP_EMAIL_JS_API_KEY}`
+        import.meta.env.VITE_EMAIL_JS_API_KEY || ""
       ),
       {
         pending: {

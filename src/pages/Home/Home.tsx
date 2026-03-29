@@ -6,10 +6,14 @@ import childDrawing from "../../assets/Home/shutterstock_1009485583.jpg";
 import welcome from "../../assets/Home/shutterstock_1418714162.jpg";
 
 import { Container, Card, Button } from "react-bootstrap";
-import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  type Libraries,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
-import { useState, MouseEvent, useRef, useEffect } from "react";
+import { useState, MouseEvent, useRef, useEffect, useMemo } from "react";
 import { Link } from "react-scroll";
 import cn from "classnames";
 
@@ -29,17 +33,24 @@ import {
   easeInYVariants,
 } from "../../components/MotionComponents";
 
+const googleMapsLibraries: Libraries = ["marker"];
+
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`,
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
+    libraries: googleMapsLibraries,
   });
-  const center = {
-    lat: 51.45433,
-    lng: -0.12201,
-  };
+  const center = useMemo(
+    () => ({
+      lat: 51.45433,
+      lng: -0.12201,
+    }),
+    []
+  );
 
   const [toggleForm, setToggleForm] = useState<boolean>(false);
+  const [map, setMap] = useState<google.maps.Map | null>(null);
 
   const contentRef = useRef<HTMLInputElement>(null);
   const [contentHeight, setContentHeight] = useState<number>(0);
@@ -58,6 +69,22 @@ const Home = (): JSX.Element => {
       };
     }
   }, []);
+
+  useEffect(() => {
+    if (!map || !isLoaded || !google.maps.marker) {
+      return;
+    }
+
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: center,
+      title: "Lorene's House",
+    });
+
+    return () => {
+      marker.map = null;
+    };
+  }, [center, isLoaded, map]);
 
   const {
     isXXs,
@@ -163,7 +190,7 @@ const Home = (): JSX.Element => {
               "home-stack-top-item-mobile": isMd || isSm || isXs || isXXs,
               "top-45 h-60": isMd || isSm || isXs,
               "top-60 h-90": isXXs,
-            }
+            },
           )}
           initial="hidden"
           whileInView="visible"
@@ -305,7 +332,10 @@ const Home = (): JSX.Element => {
             <div
               id="contact-form"
               ref={contentRef}
-              className="overflow-hidden h-auto"
+              className={cn("overflow-hidden h-auto d-flex", {
+                "align-items-center": !toggleForm,
+              })}
+              style={{ minHeight: !isSmallScreen ? "28rem" : "22rem" }}
             >
               <AnimatePresence mode="wait" initial={false}>
                 {toggleForm ? (
@@ -325,13 +355,19 @@ const Home = (): JSX.Element => {
                 ) : (
                   <motion.div
                     key="text"
-                    className="content right"
+                    className="content right w-100"
                     initial={{ opacity: 0, x: "-100%" }}
                     animate={{ opacity: 1, x: "0%" }}
                     exit={{ opacity: 0, transition: { duration: 0 } }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
-                    <div className="d-flex flex-column">
+                    <div
+                      className={cn("d-flex flex-column mx-auto", {
+                        "w-75 text-center": !isSmallScreen,
+                        "w-85 text-center py-4": isSmallScreen,
+                      })}
+                    >
+                      {/*
                       <h1
                         className={`mt-5 ${!isSmallScreen ? "fs-1" : "fs-3 "}`}
                       >
@@ -341,10 +377,8 @@ const Home = (): JSX.Element => {
                         Email: janice.copeland@simply4group.co.uk <br />
                         Contact Number: 07305811142
                       </p>
-
-                      <h1
-                        className={` ${!isSmallScreen ? "fs-1 pt-6" : "fs-3"}`}
-                      >
+                      */}
+                      <h1 className={`${!isSmallScreen ? "fs-1" : "fs-3"}`}>
                         Opening Hours
                       </h1>
                       <p className={`${!isSmallScreen ? "fs-5" : "fs-6"}`}>
@@ -367,6 +401,8 @@ const Home = (): JSX.Element => {
           </Container>
           {isLoaded ? (
             <GoogleMap
+              onLoad={setMap}
+              onUnmount={() => setMap(null)}
               mapContainerClassName={cn("w-100", {
                 "rounded-top-5": isSmallScreen,
                 "rounded-end-5": !isSmallScreen,
@@ -374,9 +410,7 @@ const Home = (): JSX.Element => {
               center={center}
               zoom={15}
               mapContainerStyle={{ height: contentHeight }}
-            >
-              <MarkerF position={center} />
-            </GoogleMap>
+            />
           ) : (
             <></>
           )}

@@ -17,14 +17,31 @@ import {
   easeInYVariants,
 } from "../components/MotionComponents";
 
-const room1 = require.context("../assets/Environment/Room1", true);
-const room1Media = room1.keys().map((media) => room1(media));
+const loadMedia = (globResult: Record<string, unknown>) =>
+  Object.entries(globResult)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([, media]) => media as string);
 
-const room2 = require.context("../assets/Environment/Room2", true);
-const room2Media = room2.keys().map((media) => room2(media));
+const room1Media = loadMedia(
+  import.meta.glob("../assets/Environment/Room1/*", {
+    eager: true,
+    import: "default",
+  })
+);
 
-const garden = require.context("../assets/Environment/Garden", true);
-const gardenMedia = garden.keys().map((media) => garden(media));
+const room2Media = loadMedia(
+  import.meta.glob("../assets/Environment/Room2/*", {
+    eager: true,
+    import: "default",
+  })
+);
+
+const gardenMedia = loadMedia(
+  import.meta.glob("../assets/Environment/Garden/*", {
+    eager: true,
+    import: "default",
+  })
+);
 
 const Environment = (): JSX.Element => {
   const { isXXs, isXs, isSm, isMd, isLg, isTablet } = useScreenSize();

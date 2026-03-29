@@ -19,8 +19,14 @@ import {
   easeInYVariants,
 } from "../components/MotionComponents";
 
-const menuPictures = require.context("../assets/Nutrition/Menus", true);
-const menuMedia = menuPictures.keys().map((menu) => menuPictures(menu));
+const menuMedia = Object.entries(
+  import.meta.glob("../assets/Nutrition/Menus/*", {
+    eager: true,
+    import: "default",
+  })
+)
+  .sort(([left], [right]) => left.localeCompare(right))
+  .map(([, media]) => media as string);
 
 const Nutrition = (): JSX.Element => {
   const { isXXs, isXs, isSm, isMd, isLg, isXl, isXXl } = useScreenSize();

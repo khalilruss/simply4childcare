@@ -1,9 +1,18 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import Navigationbar from "./components/Navbar/Navbar";
+import ScreenSizeProvider from "./screenSizeContext/ScreenSizeProvider";
+
+test("renders the main navigation", () => {
+  render(
+    <MemoryRouter>
+      <ScreenSizeProvider>
+        <Navigationbar />
+      </ScreenSizeProvider>
+    </MemoryRouter>
+  );
+
+  expect(screen.getByText("Home")).toBeInTheDocument();
+  expect(screen.getByText("About")).toBeInTheDocument();
 });
