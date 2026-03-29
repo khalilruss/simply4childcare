@@ -6,11 +6,7 @@ import childDrawing from "../../assets/Home/shutterstock_1009485583.jpg";
 import welcome from "../../assets/Home/shutterstock_1418714162.jpg";
 
 import { Container, Card, Button } from "react-bootstrap";
-import {
-  GoogleMap,
-  type Libraries,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import { useState, MouseEvent, useRef, useEffect, useMemo } from "react";
@@ -33,13 +29,10 @@ import {
   easeInYVariants,
 } from "../../components/MotionComponents";
 
-const googleMapsLibraries: Libraries = ["marker"];
-
 const Home = (): JSX.Element => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "",
-    libraries: googleMapsLibraries,
   });
   const center = useMemo(
     () => ({
@@ -50,7 +43,6 @@ const Home = (): JSX.Element => {
   );
 
   const [toggleForm, setToggleForm] = useState<boolean>(false);
-  const [map, setMap] = useState<google.maps.Map | null>(null);
 
   const contentRef = useRef<HTMLInputElement>(null);
   const [contentHeight, setContentHeight] = useState<number>(0);
@@ -69,22 +61,6 @@ const Home = (): JSX.Element => {
       };
     }
   }, []);
-
-  useEffect(() => {
-    if (!map || !isLoaded || !google.maps.marker) {
-      return;
-    }
-
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position: center,
-      title: "Lorene's House",
-    });
-
-    return () => {
-      marker.map = null;
-    };
-  }, [center, isLoaded, map]);
 
   const {
     isXXs,
@@ -199,7 +175,7 @@ const Home = (): JSX.Element => {
           variants={easeInYVariants}
           custom={20}
         >
-          <Card.Text className="text-light text-center">
+          <div className="text-light text-center">
             <h1
               className={`${
                 !(isSm || isXs || isXXs) ? "fs-1" : "m-0"
@@ -210,7 +186,7 @@ const Home = (): JSX.Element => {
             <span className={`${!(isSm || isXs || isXXs) ? "fs-3" : "fs-6"}`}>
               (Part of the Simply 4 Group)
             </span>
-          </Card.Text>
+          </div>
           <Card.Text
             className={`${
               !(isSm || isXs || isXXs) ? "fs-5 mt-2 " : "fs-6"
@@ -401,8 +377,6 @@ const Home = (): JSX.Element => {
           </Container>
           {isLoaded ? (
             <GoogleMap
-              onLoad={setMap}
-              onUnmount={() => setMap(null)}
               mapContainerClassName={cn("w-100", {
                 "rounded-top-5": isSmallScreen,
                 "rounded-end-5": !isSmallScreen,
@@ -410,7 +384,9 @@ const Home = (): JSX.Element => {
               center={center}
               zoom={15}
               mapContainerStyle={{ height: contentHeight }}
-            />
+            >
+              <MarkerF position={center} />
+            </GoogleMap>
           ) : (
             <></>
           )}
