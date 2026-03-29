@@ -308,10 +308,7 @@ const Home = (): JSX.Element => {
             <div
               id="contact-form"
               ref={contentRef}
-              className={cn("overflow-hidden h-auto d-flex", {
-                "align-items-center": !toggleForm,
-              })}
-              style={{ minHeight: !isSmallScreen ? "28rem" : "22rem" }}
+              className="overflow-hidden h-auto"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {toggleForm ? (
@@ -331,11 +328,12 @@ const Home = (): JSX.Element => {
                 ) : (
                   <motion.div
                     key="text"
-                    className="content right w-100"
+                    className="content right w-100 d-flex align-items-center"
                     initial={{ opacity: 0, x: "-100%" }}
                     animate={{ opacity: 1, x: "0%" }}
                     exit={{ opacity: 0, transition: { duration: 0 } }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
+                    style={{ minHeight: !isSmallScreen ? "28rem" : "22rem" }}
                   >
                     <div
                       className={cn("d-flex flex-column mx-auto", {
